@@ -20,10 +20,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Sistema Veterinaria</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/stylesp.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.min.css">
     </head>
     <body class="sb-nav-fixed">
         <%!
@@ -177,8 +177,12 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.all.min.js"></script>  
         <script>
             $(document).ready(function(){
+                $("#exampleModal").on("hidden.bs.modal",function (){
+                    $("#SendData")[0].reset();
+                });
             $(document).on("submit", "#SendData", function(e){
                     e.preventDefault();
                     var form = $(this);
@@ -190,7 +194,13 @@
                         data: form.serializeArray()
                     })                    
                     .done(function(data){
-                        console.log(data);
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: data[0],
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
                     })                        
                     .fail(function(){
                         console.log("Error interno");

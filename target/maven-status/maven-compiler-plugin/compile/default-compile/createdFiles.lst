@@ -7,13 +7,13 @@ Dao\MascotasDao.class
 Model\Sexo.class
 com\mycompany\colitasfelices\resources\JakartaEE10Resource.class
 Conexion\Conexion.class
-Controller\ClientesServlet.class
 com\mycompany\colitasfelices\JakartaRestConfiguration.class
 Model\Raza.class
 Dao\RazaDao.class
 Model\Mascotas.class
 Dao\LoginDao.class
 Controller\ValidateOtp.class
+Controller\ClienteController.class
 Dao\SexoDao.class
 Dao\UsuariosDao.class
 Controller\NewPassword.class

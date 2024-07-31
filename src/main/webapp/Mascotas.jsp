@@ -5,15 +5,15 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="com.zegel.vet.colitasfelices.model.Mascotas"%>
-<%@page import="com.zegel.vet.colitasfelices.dao.MascotasDao"%>
-<%@page import="com.zegel.vet.colitasfelices.model.Raza"%>
-<%@page import="com.zegel.vet.colitasfelices.dao.RazaDao"%>
-<%@page import="com.zegel.vet.colitasfelices.model.Sexo"%>
-<%@page import="com.zegel.vet.colitasfelices.dao.SexoDao"%>
-<%@page import="com.zegel.vet.colitasfelices.model.Tipo_Animal"%>
-<%@page import="com.zegel.vet.colitasfelices.dao.Tipo_AnimalDao"%>
-<%@page import="com.zegel.vet.colitasfelices.conexion.Conexion" %>
+<%@page import="Model.Mascotas"%>
+<%@page import="Dao.MascotasDao"%>
+<%@page import="Model.Raza"%>
+<%@page import="Dao.RazaDao"%>
+<%@page import="Model.Sexo"%>
+<%@page import="Dao.SexoDao"%>
+<%@page import="Model.Tipo_Animal"%>
+<%@page import="Dao.Tipo_AnimalDao"%>
+<%@page import="Conexion.Conexion" %>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

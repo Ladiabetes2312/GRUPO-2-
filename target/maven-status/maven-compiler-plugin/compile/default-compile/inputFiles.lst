@@ -1,22 +1,22 @@
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\com\mycompany\colitasfelices\JakartaRestConfiguration.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\com\mycompany\colitasfelices\resources\JakartaEE10Resource.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Conexion\Conexion.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Controller\ClientesServlet.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Controller\ForgotPassword.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Controller\LoginServlet.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Controller\NewPassword.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Controller\UsuarioController.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Controller\ValidateOtp.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Dao\ClientesDao.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Dao\LoginDao.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Dao\MascotasDao.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Dao\RazaDao.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Dao\SexoDao.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Dao\Tipo_AnimalDao.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Dao\UsuariosDao.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Model\Clientes.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Model\Login.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Model\Mascotas.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Model\Raza.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Model\Sexo.java
-C:\Users\JOSUEDAVID\Documents\Laboratorio de Integracion III  MARTES\avance Proyecto\ColitasFelices\src\main\java\Model\Tipo_Animal.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\com\mycompany\colitasfelices\JakartaRestConfiguration.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\com\mycompany\colitasfelices\resources\JakartaEE10Resource.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Conexion\Conexion.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\ClienteController.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\ForgotPassword.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\LoginServlet.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\NewPassword.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\UsuarioController.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\ValidateOtp.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\ClientesDao.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\LoginDao.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\MascotasDao.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\RazaDao.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\SexoDao.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\Tipo_AnimalDao.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\UsuariosDao.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Model\Clientes.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Model\Login.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Model\Mascotas.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Model\Raza.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Model\Sexo.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Model\Tipo_Animal.java

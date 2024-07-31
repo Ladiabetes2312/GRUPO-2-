@@ -11,26 +11,29 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author JOSUEDAVID
  */
-public class ClientesDao {
+public class ClientesDao extends Conexion {
 
     private Conexion c;
 
     public ClientesDao(Conexion conexion) {
         this.c = conexion;
     }
+    
+    public ClientesDao() {
+        
+    }
 
     public ArrayList<Clientes> mostrarClientes() {
         ArrayList<Clientes> lista = new ArrayList<>();
         try {
-            this.c.conectar();
+            this.conectar();
             String sql = "SELECT * FROM mydb.clientes";
-            try (PreparedStatement pre = this.c.getCon().prepareStatement(sql); ResultSet rs = pre.executeQuery()) {
+            try (PreparedStatement pre = this.getCon().prepareStatement(sql); ResultSet rs = pre.executeQuery()) {
 
                 while (rs.next()) {
                     Clientes cli = new Clientes();
@@ -46,9 +49,33 @@ public class ClientesDao {
         } catch (SQLException e) {
             System.out.println("Error al mostrar " + e.getMessage());
         } finally {
-            this.c.desconectar();
+            this.desconectar();
         }
         return lista;
     }
-}
 
+    public int insertarCliente(Clientes cli) {
+
+        int res = 0;
+
+        try {
+            this.conectar();
+            String sql = "INSERT INTO mydb.clientes (Nombres_Apellidos, Telefono, Correo_Electronico, Direccion, DNI) VALUES (?,?,?,?,?)";
+            PreparedStatement pre = this.getCon().prepareStatement(sql);
+            pre.setString(1, cli.getNombres_Apellidos());
+            pre.setString(2, cli.getTelefono());
+            pre.setString(3, cli.getCorreo_Electronico());
+            pre.setString(4, cli.getDireccion());
+            pre.setString(5, cli.getDNI());
+
+            res = pre.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Error al insertar" + e.getMessage());
+        } finally {
+            this.desconectar();
+        }
+        return res;
+
+    }
+}

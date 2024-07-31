@@ -23,7 +23,8 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/stylesp.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.min.css">
     </head>
     <body>
         <%!
@@ -36,7 +37,21 @@
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></form>
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <!-- Barra Usuario-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="index.jsp">Cerrar Sesion</a></li>
+                    </ul>
+                </li>
+            </ul>
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -46,23 +61,29 @@
 
                             <div class="sb-sidenav-menu-heading">Principal</div>
                             <a class="nav-link" href="menu.jsp">
-                                <div class="sb-nav-link-icon"><i class="bi bi-menu-button"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Menu Principal
                             </a>
 
+                            <div class="sb-sidenav-menu-heading">Gestiones</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="bi bi-card-checklist"></i></div>
-                                Gestiones
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Clientes
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
 
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="Usuarios.jsp">Usuarios</a>
+                                    <a class="nav-link" href="Clientes.jsp">Clientes</a>
                                     <a class="nav-link" href="Mascotas.jsp">Mascotas</a>
-                                    <a class="nav-link" href="Citas.jsp">Regisrar Cita</a>
                                 </nav>
                             </div>
+                            <div class="sb-sidenav-menu-heading">Gestiones</div>
+                            <a class="nav-link" href="Usuarios.jsp">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Usuarios
+                            </a>
+
                         </div>
                     </div>
                 </nav>
@@ -70,7 +91,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Gestion De Clientes</h1>
+                        <h1 class="mt-4">Gestion Clientes</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active"></li>
                         </ol>
@@ -83,33 +104,32 @@
                                 <div class="col-8"><h3> Clientes</h3></div>
                                 <div class="col-4 aling-self-center">
                                     <div class="d-grid gap-2">
-                                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+                                        <button type="button" id="btnAdd" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-striped">
-                                    <thead >
-                                    <th>Nombres y Apellidos</th>
-                                    <th>Telefono</th>
-                                    <th>Correo Electronico</th>
-                                    <th>Direccion</th>
-                                    <th>DNI</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
+                                    <thead>
+                                        <th>Nombres y Apellidos</th>
+                                        <th>Telefono</th>
+                                        <th>Correo Electronico</th>
+                                        <th>Direccion</th>
+                                        <th>DNI</th>
+                                    </thead>                                       
                                     <tbody>
                                         <%
                                             List<Clientes> lista = clientesDao.mostrarClientes();
                                             for (Clientes elem : lista) {
 
                                         %>
-                                        <tr>
+                                        
+
                                             <td class="nombres"><%=elem.getNombres_Apellidos()%></td>
-                                            <td class="correo"><%=elem.getTelefono()%></td>
-                                            <td class="usuario"><%=elem.getCorreo_Electronico()%></td>
-                                            <td class="pass"><%=elem.getDireccion()%></td>
-                                            <td class="pass"><%=elem.getDNI()%></td>
+                                            <td class="telefono"><%=elem.getTelefono()%></td>
+                                            <td class="correo"><%=elem.getCorreo_Electronico()%></td>
+                                            <td class="direccion"><%=elem.getDireccion()%></td>
+                                            <td class="dni"><%=elem.getDNI()%></td>
                                             <td>
                                                 <button type="button" class="btn btn-outline-warning">Editar</button>
                                                 <button type="button" class="btn btn-outline-danger">Eliminar</button>
@@ -119,8 +139,7 @@
                                             }
                                         %>
                                     </tbody>
-                                    </td>
-                                    </tr>
+
                                     </tbody>
                                 </table>
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -130,8 +149,8 @@
                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Cliente</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
-                                                <form action="" role="form">
+                                            <form action="${pageContext.servletContext.contextPath}/ClienteController" method="POST"  id="SendData">
+                                                <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col-6">
                                                             <label>Nombres</label>
@@ -139,51 +158,92 @@
                                                         </div>
                                                         <div class="col-6">
                                                             <label>Telefono</label>
-                                                            <input type="text" name="txtContraseña" class="form-control" id="txtContraseña">
+                                                            <input type="text" name="txtTelefono" class="form-control" id="txtTelefono">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-6">
                                                             <label>Correo</label>
-                                                            <input type="text" name="txCorreo" class="form-control" id="txtCorreo">
+                                                            <input type="text" name="txtCorreo" class="form-control" id="txtCorreo">
                                                         </div>
-                                                         <div class="col-6">
+                                                        <div class="col-6">
                                                             <label>Direccion</label>                             
-                                                                <input type="text" name="txtDNI" class="form-control" id="txtDNI">                                             
+                                                            <input type="text" name="txtDireccion" class="form-control" id="txtDNI">                                             
                                                         </div>
                                                         <div class="col-6">
                                                             <label>DNI</label>                             
-                                                                <input type="number" name="txtDNI" class="form-control" id="txtDNI">                                             
+                                                            <input type="number" name="txtDNI" class="form-control" id="txtDNI">                                             
                                                         </div>
+                                                        <input type="hidden" name="accion" value="" id="accion">
                                                     </div>
-                                                </form>                           
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Guardar</button>
                                                 </div>
-                                            </div>
+                                                <div class="modal-footer">                                                    
+                                                    <div class="col-12">
+                                                        <button type="submit" class="btn btn-success">Guardar</button>
+                                                        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cancelar</button>
+                                                    </div>
+                                                </div> 
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted"> &copy;Colitas Felices 2024</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
                         </div>
                     </div>
                 </footer>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="js/scripts.js"></script>        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#exampleModal").on("hidden.bs.modal",function (){
+                    $("#SendData")[0].reset();
+                });                
+                $(document).on("click","#btnAdd", function (){
+                    $("#accion").val("add");
+                });                              
+                //Agregar               
+                $(document).on("submit", "#SendData", function(e){
+                        e.preventDefault();
+                        var form = $(this);
+                        var ruta = form.attr("action");
+                        $.ajax({
+                            url: ruta,
+                            type: "POST",
+                            dataType: "JSON",
+                            data: form.serializeArray()
+                        })                    
+                        .done(function(data){
+                            $("#exampleModal").modal("hide");
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: data[0],
+                                showConfirmButton: false,
+                                timer: 1500
+                              });
+                        })                        
+                        .fail(function(){
+                            console.log("Error interno");
+                        });
+                    });               
+            });
+        </script>
     </body>
 </html>
