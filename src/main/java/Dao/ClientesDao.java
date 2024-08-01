@@ -34,7 +34,6 @@ public class ClientesDao extends Conexion {
             this.conectar();
             String sql = "SELECT * FROM mydb.clientes";
             try (PreparedStatement pre = this.getCon().prepareStatement(sql); ResultSet rs = pre.executeQuery()) {
-
                 while (rs.next()) {
                     Clientes cli = new Clientes();
                     cli.setIdClientes(rs.getInt(1));

@@ -5,12 +5,13 @@
     Author     : JOSUEDAVID
 --%>
 
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="Model.Clientes"%>
 <%@page import="Dao.ClientesDao"%>
 <%@page import="Conexion.Conexion" %>
 <%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,6 +26,7 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.min.css">
         <link rel="stylesheet" href="https://cdn.datatables.net/2.1.2/css/dataTables.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
     </head>
     <body>
         <%!
@@ -83,14 +85,13 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Usuarios
                             </a>
-
                         </div>
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid px-4">
+                    <div class="container-fluid px-4">                     
                         <h1 class="mt-4">Gestion Clientes</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active"></li>
@@ -99,31 +100,35 @@
                             <div class="col-xl-3 col-md-6">
                             </div>
                         </div>
-                        <div class="card mb-4">
-                            <div class="row">
-                                <div class="col-8"><h3> Clientes</h3></div>
+                        <div class="card">
+                            <div class="row">                               
                                 <div class="col-4 aling-self-center">
                                     <div class="d-grid gap-2">
                                         <button type="button" id="btnAdd" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
                                     </div>
-                                </div>
+                                </div>                                   
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <th>Nombres y Apellidos</th>
-                                        <th>Telefono</th>
-                                        <th>Correo Electronico</th>
-                                        <th>Direccion</th>
-                                        <th>DNI</th>
-                                    </thead>                                       
-                                    <tbody>
-                                        <%
-                                            List<Clientes> lista = clientesDao.mostrarClientes();
-                                            for (Clientes elem : lista) {
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th>Telefono</th>
+                                                    <th>Correo</th>
+                                                    <th>Direccion</th>
+                                                    <th>DNI</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody >
+                                                <%
+                                                    List<Clientes> lista = clientesDao.mostrarClientes();
+                                                    for (Clientes elem : lista) {
 
-                                        %>
-                                        
+                                                %>
+
 
                                             <td class="nombres"><%=elem.getNombres_Apellidos()%></td>
                                             <td class="telefono"><%=elem.getTelefono()%></td>
@@ -131,17 +136,16 @@
                                             <td class="direccion"><%=elem.getDireccion()%></td>
                                             <td class="dni"><%=elem.getDNI()%></td>
                                             <td>
-                                                <button type="button" class="btn btn-outline-warning">Editar</button>
-                                                <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                                                
                                             </td>
-                                        </tr>
-                                        <%
-                                            }
-                                        %>
-                                    </tbody>
-
-                                    </tbody>
-                                </table>
+                                            </tr>
+                                            <%
+                                                }
+                                            %>
+                                            </tbody>
+                                        </table>
+                                    </div>                                   
+                                </div> 
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog  modal-lg">
                                         <div class="modal-content">
@@ -205,45 +209,11 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>        
-        
+        <script src="js/scripts.js"></script>               
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.all.min.js"></script>
         <script src="https://cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                $("#exampleModal").on("hidden.bs.modal",function (){
-                    $("#SendData")[0].reset();
-                });                
-                $(document).on("click","#btnAdd", function (){
-                    $("#accion").val("add");
-                });                              
-                //Agregar               
-                $(document).on("submit", "#SendData", function(e){
-                        e.preventDefault();
-                        var form = $(this);
-                        var ruta = form.attr("action");
-                        $.ajax({
-                            url: ruta,
-                            type: "POST",
-                            dataType: "JSON",
-                            data: form.serializeArray()
-                        })                    
-                        .done(function(data){
-                            $("#exampleModal").modal("hide");
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: data[0],
-                                showConfirmButton: false,
-                                timer: 1500
-                              });
-                        })                        
-                        .fail(function(){
-                            console.log("Error interno");
-                        });
-                    });               
-            });
-        </script>
+        <script src="${pageContext.servletContext.contextPath}/js/ClienteF.js"></script>
+        <script src="${pageContext.servletContext.contextPath}/js/Clientes.js"></script>
     </body>
 </html>

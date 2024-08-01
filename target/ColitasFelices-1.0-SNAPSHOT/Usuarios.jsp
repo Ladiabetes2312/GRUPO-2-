@@ -37,9 +37,9 @@
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                
+
             </form>
-            
+
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -51,7 +51,7 @@
                                 <div class="sb-nav-link-icon"><i class="bi bi-menu-button"></i></div>
                                 Menu Principal
                             </a>
-                            
+
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="bi bi-card-checklist"></i></div>
                                 Gestiones
@@ -113,7 +113,7 @@
                                                 <button type="button" class="btn btn-outline-danger"><i class="bi bi-trash3-fill"></i></button>
                                             </td>
                                         </tr>
-                                        
+
                                         <%
                                             }
                                         %>
@@ -147,14 +147,19 @@
                                                         <td>Password</td>
                                                         <td><input type="text" id="txtContrasena" name="txtContrasena" class="form-control"></td>
                                                     </tr>
+                                                    <tr>
+                                                        <td>Rol</td>
+                                                        <select class="form-select"required>  </select>
+  
+                                                    </tr>                                                  
                                                 </table>
                                             </div>                                              
-                                                <div class="modal-footer">                                                    
-                                                    <div class="col-12">
-                                                        <button type="submit" class="btn btn-success">Guardar</button>
-                                                        <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cancelar</button>
-                                                    </div>
-                                                </div>                                                                                                 
+                                            <div class="modal-footer">                                                    
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                                    <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cancelar</button>
+                                                </div>
+                                            </div>                                                                                                 
                                         </form>
                                     </div>
                                 </div>
@@ -166,7 +171,7 @@
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted"> &copy;Colitas Felices 2024</div>
-                            
+
                         </div>
                     </div>
                 </footer>
@@ -179,11 +184,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.all.min.js"></script>  
         <script>
-            $(document).ready(function(){
-                $("#exampleModal").on("hidden.bs.modal",function (){
+            $(document).ready(function () {
+                $("#exampleModal").on("hidden.bs.modal", function () {
                     $("#SendData")[0].reset();
                 });
-            $(document).on("submit", "#SendData", function(e){
+                $(document).on("submit", "#SendData", function (e) {
                     e.preventDefault();
                     var form = $(this);
                     var ruta = form.attr("action");
@@ -192,20 +197,20 @@
                         type: "POST",
                         dataType: "JSON",
                         data: form.serializeArray()
-                    })                    
-                    .done(function(data){
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: data[0],
-                            showConfirmButton: false,
-                            timer: 1500
-                          });
-                    })                        
-                    .fail(function(){
-                        console.log("Error interno");
-                    });
-                });               
+                    })
+                            .done(function (data) {
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "success",
+                                    title: data[0],
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            })
+                            .fail(function () {
+                                console.log("Error interno");
+                            });
+                });
             });
         </script>
     </body>
