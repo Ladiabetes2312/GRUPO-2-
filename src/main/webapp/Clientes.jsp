@@ -10,7 +10,7 @@
 <%@page import="java.util.List"%>
 <%@page import="Model.Clientes"%>
 <%@page import="Dao.ClientesDao"%>
-<%@page import="Conexion.Conexion" %>
+<%@page import="Conexion.Conexion"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
