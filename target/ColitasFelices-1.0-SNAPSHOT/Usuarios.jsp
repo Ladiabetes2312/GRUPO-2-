@@ -149,7 +149,9 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Rol</td>
-                                                        <select class="form-select"required>  </select>
+                                                        <td>
+                                                            <select class="form-select"required>  </select>
+                                                        </td>
   
                                                     </tr>                                                  
                                                 </table>
