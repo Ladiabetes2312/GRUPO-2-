@@ -121,7 +121,7 @@ public class ClienteController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
     private String addRegistro(Clientes cli) {
         int resp;
         String mensaje = "Error DAAA"; 

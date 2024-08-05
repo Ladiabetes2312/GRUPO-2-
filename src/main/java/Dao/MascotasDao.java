@@ -16,12 +16,17 @@ import java.util.ArrayList;
 *
 * @author JOSUEDAVID
 */
-public class MascotasDao {
+public class MascotasDao extends Conexion{
     private Conexion c;
  
     public MascotasDao(Conexion conexion) {
         this.c = conexion;
     }
+
+    public MascotasDao() {
+    }
+    
+    
     public ArrayList<Mascotas> mostrarMascotas(){
         ArrayList<Mascotas> lista = new ArrayList<>();
         try{

@@ -11,29 +11,33 @@ package Model;
  */
 public class Login {
     
-    private int idUsuarios;
+    private int idUsuario;
     private String Nombres_Apellidos;
     private String Correo_Electronico;
     private String Usuario;
     private String Password;
+    private int idCargo;
+    private String NombreCargo;
 
     public Login() {
     }
 
-    public Login(int idUsuarios, String Nombres_Apellidos, String Correo_Electronico, String Usuario, String Password) {
-        this.idUsuarios = idUsuarios;
+    public Login(int idUsuario, String Nombres_Apellidos, String Correo_Electronico, String Usuario, String Password, int idCargo, String NombreCargo) {
+        this.idUsuario = idUsuario;
         this.Nombres_Apellidos = Nombres_Apellidos;
         this.Correo_Electronico = Correo_Electronico;
         this.Usuario = Usuario;
         this.Password = Password;
+        this.idCargo = idCargo;
+        this.NombreCargo = NombreCargo;
     }
 
-    public int getIdUsuarios() {
-        return idUsuarios;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdUsuarios(int idUsuarios) {
-        this.idUsuarios = idUsuarios;
+    public void setIdUsuario(int idUsuarios) {
+        this.idUsuario = idUsuarios;
     }
 
     public String getNombres_Apellidos() {
@@ -67,4 +71,21 @@ public class Login {
     public void setPassword(String Password) {
         this.Password = Password;
     }
+
+    public int getIdCargo() {
+        return idCargo;
+    }
+
+    public void setIdCargo(int idCargo) {
+        this.idCargo = idCargo;
+    }
+
+    public String getNombreCargo() {
+        return NombreCargo;
+    }
+
+    public void setNombreCargo(String NombreCargo) {
+        this.NombreCargo = NombreCargo;
+    }
 }
+

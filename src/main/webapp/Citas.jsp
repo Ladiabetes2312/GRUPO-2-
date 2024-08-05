@@ -4,7 +4,15 @@
     Author     : josel
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Model.Clientes"%>
+<%@page import="Dao.ClientesDao"%>
+<%@page import="Dao.MascotasDao"%>
+<%@page import="Model.Mascotas"%>
+<%@page import="Dao.UsuariosDao"%>
+<%@page import="Model.Login"%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,6 +29,11 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     </head>
     <body class="sb-nav-fixed">
+        <%
+            UsuariosDao usuariosDao = new UsuariosDao();
+            MascotasDao mascotasDao = new MascotasDao();
+            ClientesDao clientesDao = new ClientesDao();
+        %>
 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
@@ -30,7 +43,7 @@
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></form>
         </nav>
-        
+
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -73,31 +86,29 @@
                         <label for="exampleDataList" class="form-label">Clientes</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected></option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                        <label for="exampleDataList" class="form-label">Mascotas </label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected></option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <%
+                                ArrayList<Clientes> List = clientesDao.mostrarClientes();
+                                for (Clientes elemClientes : List) {
+                            %>
+                            <option value="<%=elemClientes.getIdClientes()%>"><%=elemClientes.getNombres_Apellidos()%></option>
+                            <% } %>
                         </select>
                         <label for="exampleDataList" class="form-label">Veterinario</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected></option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <%
+                                ArrayList<Login> List2 = usuariosDao.mostrarUsuario();
+                                for (Login elemLogin : List2) {
+                            %>                            
+                            <option value="<%=elemLogin.getIdUsuarios()%>"><%=elemLogin.getUsuario()%></option>
+                            <% } %>
                         </select>
                         <br>                       
                         <div class="d-grid gap-2">
-                            <button class="btn btn-success" type="button">Agendar</button>
+                            <button type="submit" class="btn btn-success" type="button">Agendar</button>
                         </div>
                     </div>
                 </main>
-
                 <!--- FOOTER>><!--  -->
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">

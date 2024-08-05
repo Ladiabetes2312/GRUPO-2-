@@ -1,12 +1,15 @@
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\com\mycompany\colitasfelices\JakartaRestConfiguration.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\com\mycompany\colitasfelices\resources\JakartaEE10Resource.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Conexion\Conexion.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\CitasDao.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\ClienteController.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\EliminarUser.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\ForgotPassword.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\LoginServlet.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\NewPassword.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\UsuarioController.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Controller\ValidateOtp.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\CargoDao.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\ClientesDao.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\LoginDao.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\MascotasDao.java
@@ -14,6 +17,7 @@ C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\SexoDao.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\Tipo_AnimalDao.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Dao\UsuariosDao.java
+C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Model\Cargo.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Model\Clientes.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Model\Login.java
 C:\Users\josel\OneDrive\Escritorio\GRUPO 2 PROYECTO\ColitasFelices\src\main\java\Model\Mascotas.java

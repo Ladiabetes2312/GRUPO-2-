@@ -213,7 +213,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.all.min.js"></script>
         <script src="https://cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
-        <script src="${pageContext.servletContext.contextPath}/js/ClienteF.js"></script>
+        
         <script src="${pageContext.servletContext.contextPath}/js/Clientes.js"></script>
     </body>
 </html>

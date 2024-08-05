@@ -5,24 +5,32 @@
         <servlet-class>Controller.LoginServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ClienteController</servlet-name>
+        <servlet-class>Controller.ClienteController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>Controller.UsuarioController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ClienteController</servlet-name>
-        <servlet-class>Controller.ClienteController</servlet-class>
+        <servlet-name>EliminarUser</servlet-name>
+        <servlet-class>Controller.EliminarUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ClienteController</servlet-name>
+        <url-pattern>/ClienteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
         <url-pattern>/UsuarioController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ClienteController</servlet-name>
-        <url-pattern>/ClienteController</url-pattern>
+        <servlet-name>EliminarUser</servlet-name>
+        <url-pattern>/EliminarUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
