@@ -14,17 +14,21 @@ import java.util.ArrayList;
 *
 * @author JOSUEDAVID
 */
-public class SexoDao {
+public class SexoDao extends Conexion{
     private Conexion c;
     public SexoDao(Conexion conexion){
         this.c = conexion;
     }
+
+    public SexoDao() {
+    }
+    
     public ArrayList<Sexo> mostrarSexo (){
         ArrayList<Sexo> lista = new ArrayList<>();
         try{
-            this.c.conectar();
-            String sql = "SELECT * FROM mybd.sexo";
-            try (PreparedStatement pre = this.c.getCon().prepareStatement(sql);ResultSet rs = pre.executeQuery()){
+            this.conectar();
+            String sql = "SELECT * FROM mydb.sexo";
+            try (PreparedStatement pre = this.getCon().prepareStatement(sql);ResultSet rs = pre.executeQuery()){
                 while (rs.next()){
                     Sexo sx = new Sexo();
                     sx.setIdSexo(rs.getInt(1));
@@ -35,7 +39,7 @@ public class SexoDao {
         } catch (Exception e){
             System.out.println("error al mostrar" + e.getMessage());
         } finally{
-            this.c.desconectar();
+            this.desconectar();
         }
         return lista;
     }

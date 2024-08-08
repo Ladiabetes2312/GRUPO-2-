@@ -81,7 +81,7 @@
                         </div>
                         <div class="card mb-4">
                             <div class="row">
-                                <div class="col-8"><h3> Usuarios</h3></div>
+                                <div class="col-8"><h3></h3></div>
                                 <div class="col-4 aling-self-center">
                                     <div class="d-grid gap-2">
                                         <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-person-fill-add"></i></button>
@@ -91,7 +91,6 @@
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
-
                                     <th>Nombres y Apellidos</th>
                                     <th>Correo Electronico</th>
                                     <th>Usuario</th>
@@ -104,28 +103,26 @@
                                             for (Login elem : lista) {
                                         %>
                                         <tr>
-
                                             <td class="nombres"><%=elem.getNombres_Apellidos()%></td>
                                             <td class="correo"><%=elem.getCorreo_Electronico()%></td>
                                             <td class="usuario"><%=elem.getUsuario()%></td>
                                             <td class="password"><%=elem.getPassword()%></td>
                                             <td class="cargo"><%=elem.getNombreCargo()%></td>
-
-                                    
-                                    <td>
-                                        <button type="button" class="btn btn-outline-warning btnEditar" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>
-                                        
-                                    </td>
-                                        
-                                    <form action="${pageContext.servletContext.contextPath}/EliminarUser" method="POST">
-                                        <input type="hidden" name="id" value="<%=elem.getIdUsuario()%>">
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este Usuario?')"><i class="bi bi-trash3-fill"></i></button>
-                                    </form>
-                                    </tr>
-
-                                    <%
-                                        }
-                                    %>
+                                            <td>
+                                                <button type="button" class="btn btn-outline-warning btnEditar" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>                                        
+                                            </td>                                       
+                                            <td colspan="2">
+                                                <div class="d-flex gap-2">
+                                                    <!-- Boton Eliminar -->
+                                                    <form action="${pageContext.servletContext.contextPath}/EliminarUser" method="POST">
+                                                        <input type="hidden" name="id" value="">
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro de eliminar a este Usuario?')">Eliminar</button>
+                                                    </form>
+                                                </div>
+                                        </tr>
+                                        <%
+                                            }
+                                        %>
                                     </tbody>
                                 </table>
                             </div>
@@ -160,7 +157,6 @@
                                                         <td>Rol</td>
                                                         <td>
                                                             <select name="txtCargo" id="txtCargo" class="form-select"required>
-
                                                                 <option  value="first">Seleccionar Rol</option>
                                                                 <%
                                                                     ArrayList<Cargo> List = cargoDao.mostrarCargo();
@@ -171,9 +167,7 @@
                                                                 <option value="<%=elem.getIdCargo()%>"><%=elem.getNombreCargo()%></option>
                                                                 <% } %>
                                                             </select>
-
                                                         </td>
-
                                                     </tr>                                                  
                                                 </table>
                                             </div>                                              

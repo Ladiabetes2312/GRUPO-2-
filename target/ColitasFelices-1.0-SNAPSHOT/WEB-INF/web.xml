@@ -5,10 +5,6 @@
         <servlet-class>Controller.LoginServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ClienteController</servlet-name>
-        <servlet-class>Controller.ClienteController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>UsuarioController</servlet-name>
         <servlet-class>Controller.UsuarioController</servlet-class>
     </servlet>
@@ -16,13 +12,29 @@
         <servlet-name>EliminarUser</servlet-name>
         <servlet-class>Controller.EliminarUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ClienteController</servlet-name>
+        <servlet-class>Controller.ClienteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarCliente</servlet-name>
+        <servlet-class>Controller.EliminarCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MascotaController</servlet-name>
+        <servlet-class>Controller.MascotaController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MascotaC</servlet-name>
+        <servlet-class>Controller.MascotaC</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CitaController</servlet-name>
+        <servlet-class>Controller.CitaController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ClienteController</servlet-name>
-        <url-pattern>/ClienteController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UsuarioController</servlet-name>
@@ -31,6 +43,26 @@
     <servlet-mapping>
         <servlet-name>EliminarUser</servlet-name>
         <url-pattern>/EliminarUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClienteController</servlet-name>
+        <url-pattern>/ClienteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarCliente</servlet-name>
+        <url-pattern>/EliminarCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MascotaController</servlet-name>
+        <url-pattern>/MascotaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MascotaC</servlet-name>
+        <url-pattern>/MascotaC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CitaController</servlet-name>
+        <url-pattern>/CitaController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

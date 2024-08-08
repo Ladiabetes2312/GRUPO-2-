@@ -23,16 +23,16 @@ public class ClientesDao extends Conexion {
     public ClientesDao(Conexion conexion) {
         this.c = conexion;
     }
-    
+
     public ClientesDao() {
-        
+
     }
 
     public ArrayList<Clientes> mostrarClientes() {
         ArrayList<Clientes> lista = new ArrayList<>();
         try {
             this.conectar();
-            String sql = "SELECT * FROM mydb.clientes";
+            String sql = "SELECT * FROM clientes";
             try (PreparedStatement pre = this.getCon().prepareStatement(sql); ResultSet rs = pre.executeQuery()) {
                 while (rs.next()) {
                     Clientes cli = new Clientes();
@@ -59,7 +59,7 @@ public class ClientesDao extends Conexion {
 
         try {
             this.conectar();
-            String sql = "INSERT INTO mydb.clientes (Nombres_Apellidos, Telefono, Correo_Electronico, Direccion, DNI) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO clientes (Nombres_Apellidos, Telefono, Correo_Electronico, Direccion, DNI) VALUES (?,?,?,?,?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
             pre.setString(1, cli.getNombres_Apellidos());
             pre.setString(2, cli.getTelefono());
@@ -74,6 +74,27 @@ public class ClientesDao extends Conexion {
         } finally {
             this.desconectar();
         }
+        return res;
+
+    }
+
+    public int eliminarCliente(int idClientes) {
+
+        int res = 0;
+
+        try {
+            this.conectar();
+            String sql = "DELETE FROM clientes WHERE idClientes=?";
+            PreparedStatement pre = this.getCon().prepareStatement(sql);
+            pre.setInt(1, idClientes);
+            res = pre.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar" + e.getMessage());
+
+        } finally {
+            this.desconectar();
+        }
+
         return res;
 
     }

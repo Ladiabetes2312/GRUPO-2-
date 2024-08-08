@@ -101,7 +101,8 @@
                             </div>
                         </div>
                         <div class="card">
-                            <div class="row">                               
+                            <div class="row">
+                                <div class="col-8"><h3></h3></div>
                                 <div class="col-4 aling-self-center">
                                     <div class="d-grid gap-2">
                                         <button type="button" id="btnAdd" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
@@ -122,27 +123,34 @@
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
-                                            <tbody >
+                                            <tbody>
                                                 <%
                                                     List<Clientes> lista = clientesDao.mostrarClientes();
                                                     for (Clientes elem : lista) {
 
                                                 %>
-
-
                                             <td class="nombres"><%=elem.getNombres_Apellidos()%></td>
                                             <td class="telefono"><%=elem.getTelefono()%></td>
                                             <td class="correo"><%=elem.getCorreo_Electronico()%></td>
                                             <td class="direccion"><%=elem.getDireccion()%></td>
                                             <td class="dni"><%=elem.getDNI()%></td>
                                             <td>
-                                                
+                                                <button type="button" class="btn btn-outline-warning btnEditar" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>
                                             </td>
-                                            </tr>
-                                            <%
-                                                }
-                                            %>
-                                            </tbody>
+
+                                            <td colspan="2">
+                                                <div class="d-flex gap-2">
+                                                    <!-- Boton Eliminar -->
+                                                    <form action="${pageContext.servletContext.contextPath}/EliminarCliente" method="POST">
+                                                        <input type="hidden" name="id" value="">
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro de eliminar a este Cliente?')">Eliminar</button>
+                                                    </form>
+                                                </div>
+                                                </tr>
+                                                <%
+                                                    }
+                                                %>
+                                                </tbody>
                                         </table>
                                     </div>                                   
                                 </div> 
@@ -153,7 +161,7 @@
                                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Cliente</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <form action="${pageContext.servletContext.contextPath}/ClienteController" method="POST"  id="SendData">
+                                            <form action="${pageContext.servletContext.contextPath}/ClienteController" method="POST" id="form">
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col-6">
@@ -172,18 +180,19 @@
                                                         </div>
                                                         <div class="col-6">
                                                             <label>Direccion</label>                             
-                                                            <input type="text" name="txtDireccion" class="form-control" id="txtDNI">                                             
+                                                            <input type="text" name="txtDireccion" class="form-control" id="txtDireccion">                                             
                                                         </div>
                                                         <div class="col-6">
                                                             <label>DNI</label>                             
                                                             <input type="number" name="txtDNI" class="form-control" id="txtDNI">                                             
                                                         </div>
-                                                        <input type="hidden" name="accion" value="" id="accion">
+
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">                                                    
                                                     <div class="col-12">
-                                                        <button type="submit" class="btn btn-success">Guardar</button>
+                                                        <button type="submit" name="btnGuardar" class="btn btn-success">Guardar</button>
+                                                        <button type="submit" name="btnEditar" class="btn btn-dark">Editar</button>
                                                         <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cancelar</button>
                                                     </div>
                                                 </div> 
@@ -208,12 +217,18 @@
                 </footer>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>               
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>               
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.all.min.js"></script>
         <script src="https://cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
-        
+        <script src="js/scripts.js"></script>
+        <%
+            if (request.getAttribute("message") != null) {
+        %>
+        <script>alert('<%=request.getAttribute("message")%>')</script>
+        <%
+            }
+        %>
         <script src="${pageContext.servletContext.contextPath}/js/Clientes.js"></script>
     </body>
 </html>

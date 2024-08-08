@@ -4,17 +4,19 @@
     Author     : JOSUEDAVID
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.RespaldoM"%>
 <%@page import="java.util.List"%>
 <%@page import="Model.Mascotas"%>
-<%@page import="Dao.MascotasDao"%>
+<%@page import="Model.Clientes"%>
 <%@page import="Model.Raza"%>
-<%@page import="Dao.RazaDao"%>
-<%@page import="Model.Sexo"%>
-<%@page import="Dao.SexoDao"%>
 <%@page import="Model.Tipo_Animal"%>
+<%@page import="Model.Sexo"%>
+<%@page import="Dao.MascotasDao"%>
+<%@page import="Dao.RazaDao"%>
+<%@page import="Dao.SexoDao"%>
 <%@page import="Dao.Tipo_AnimalDao"%>
-<%@page import="Conexion.Conexion" %>
-<%@page import="java.util.ArrayList"%>
+<%@page import="Dao.ClientesDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -28,15 +30,15 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/stylesp.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
     </head>
     <body>
         <%!
-            Conexion conexion = new Conexion();
-            MascotasDao mascotasDao = new MascotasDao(conexion);
-            RazaDao razaDao = new RazaDao(conexion);
-            SexoDao sexoDao = new SexoDao(conexion);
-            Tipo_AnimalDao tipo_animalDao = new Tipo_AnimalDao(conexion);
-            
+            MascotasDao mascotasDao = new MascotasDao();
+            ClientesDao clientesDao = new ClientesDao();
+            RazaDao razaDao = new RazaDao();
+            SexoDao sexoDao = new SexoDao();
+            Tipo_AnimalDao tipo_AnimalDao = new Tipo_AnimalDao();
         %>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
@@ -91,7 +93,6 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Usuarios
                             </a>
-
                         </div>
                     </div>
                 </nav>
@@ -109,42 +110,44 @@
                         </div>
                         <div class="card mb-4">
                             <div class="row">
-                                <div class="col-8"><h3> Clientes</h3></div>
+                                <div class="col-8"><h3> </h3></div>
                                 <div class="col-4 aling-self-center">
                                     <div class="d-grid gap-2">
-                                        <button type="button" class="btn btn-outline-success">Agregar</button>
+                                        <button type="button" id="btnAdd" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="table-responsive">
                                 <table class="table table-striped">
-                                    <thead >
-                                    <th>ID</th>
-                                    <th>Nombres</th>
+                                    <thead>
+                                    <th>Mascota</th>
                                     <th>Fecha Nacimiento</th>
-                                    <th>Id Clientes</th>
-                                    <th>Id Raza</th>
-                                    <th>Id Sexo</th>
-                                    <th>Id Tipo de Animal</th>
+                                    <th>Dueño</th>
+                                    <th>Raza</th>
+                                    <th>Sexo</th>
+                                    <th>Tipo de Animal</th>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tr>
                                     <tbody>
                                         <%
-                                            List<Mascotas> lista = mascotasDao.mostrarMascotas();
-                                            for (Mascotas elem : lista) {
+                                            List<RespaldoM> lista = mascotasDao.listarMascotas();
+                                            for (RespaldoM elem : lista) {
                                         %>
                                         <tr>
-                                            <td class="id"><%=elem.getIdMascotas()%></td>
                                             <td class="nombres"><%=elem.getNombre()%></td>
                                             <td class="f_nacimiento"><%=elem.getF_Nacimiento()%></td>
-                                            <td class="idclientes"><%=elem.getIdClientes()%></td>
-                                            <td class="idraza"><%=elem.getIdRaza()%></td>
-                                            <td class="idsexo"><%=elem.getIdSexo()%></td>
-                                            <td class="idtipo_de_animal"><%=elem.getIdTipo_De_Animal()%></td>
-                                            <td>
-                                                <button type="button" class="btn btn-outline-warning">Editar</button>
-                                                <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                                            <td class="cliente"><%=elem.getNombres_Apellidos()%></td>
+                                            <td class="raza"><%=elem.getDescripcion()%></td>
+                                            <td class="sexo"><%=elem.getSexo()%></td>
+                                            <td class="Tipo"><%=elem.getTipo()%></td>
+                                            <td colspan="2">
+                                                <div class="d-flex gap-2">
+                                                    <!-- Boton Eliminar -->
+                                                    <form action="${pageContext.servletContext.contextPath}/EliminarUser" method="POST">
+                                                        <input type="hidden" name="id" value="">
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro de eliminar a esta mascota?')">Eliminar</button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
                                         <%
@@ -153,8 +156,90 @@
                                     </tbody>
                                     </td>
                                     </tr>
-                                    </tbody>
+
                                 </table>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog  modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Mascota</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="${pageContext.servletContext.contextPath}/" method="POST" id="form">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label>Nombre</label>
+                                                    <input type="text" name="txtNombre" class="form-control" id="txtNombre">
+                                                    <label></label>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label>Fecha de Nacimiento</label>
+                                                    <input type="date" name="txtF_Nacimiento" class="form-control" id="txtF_Nacimiento">
+                                                    <label></label>
+                                                </div>
+                                                <tr>
+                                                <div class="col-6">
+                                                    <select name="txtCli" id="txtCli" class="form-select"required>
+                                                        <option value="firts">..Dueño..</option>
+                                                        <%
+                                                            ArrayList<Clientes> List = clientesDao.mostrarClientes();
+                                                            for (Clientes elem : List) {
+                                                        %>
+                                                        <option value="<%=elem.getIdClientes()%>"><%=elem.getNombres_Apellidos()%></option>
+                                                        <% } %>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="d-flex align-items-center">
+                                                        <select name="txtRaza" id="txtRaza" class="form-select"required>
+                                                            <option value="firts">..Raza..</option>
+                                                            <%
+                                                                ArrayList<Raza> List1 = razaDao.mostrarRaza();
+                                                                for (Raza elem1 : List1) {
+                                                            %>
+                                                            <option value="<%=elem1.getIdRaza()%>"><%=elem1.getDescripcion()%></option>
+                                                            <% } %>
+                                                        </select>
+                                                        <label>..</label>
+                                                        <button type="button" class="btn btn-success" onclick="location.href = 'Clientes.jsp'">Agregar</button>
+                                                    </div>
+                                                </div>
+                                                <label type="hidden">.</label>
+                                                <div class="col-6">
+                                                    <select name="txtSexo" id="Sexo" class="form-select"required>
+                                                        <option value="firts">..Sexo..</option>
+                                                        <%
+                                                            ArrayList<Sexo> List2 = sexoDao.mostrarSexo();
+                                                            for (Sexo elem2 : List2) {
+                                                        %>
+                                                        <option value="<%=elem2.getIdSexo()%>"><%=elem2.getDescripcion()%></option>
+                                                        <% }%>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6">
+                                                    <select name="txtTipo" id="txtTipo" class="form-select" required>
+                                                        <option value="first">..Tipo de Animal..</option>
+                                                        <%
+                                                           ArrayList<Tipo_Animal> List3 = tipo_AnimalDao.mostrarTipo_Animal();
+                                                           for (Tipo_Animal elem3 : List3) {
+                                                        %>
+                                                        <option value="<%=elem3.getIdTipo_De_Animal()%>"><%=elem3.getDescripcion()%></option>
+                                                        <% }%>
+                                                    </select>  
+                                                </div>   
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">                                                    
+                                            <div class="col-12">
+                                                <button type="submit" name="btnGuardar" class="btn btn-success">Guardar</button>
+                                                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                        </div> 
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -180,5 +265,5 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-    </body>
+         </body>
 </html>

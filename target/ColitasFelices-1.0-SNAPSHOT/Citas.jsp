@@ -4,6 +4,7 @@
     Author     : josel
 --%>
 
+<%@page import="Model.RespaldoM"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Model.Clientes"%>
@@ -74,40 +75,64 @@
             <div id="layoutSidenav_content">
                 <main>
                     <h1 class="centrar">Programar Cita</h1>
-                    <div class="form-cita">
-                        <div class="mb-3">                           
-                            <label for="exampleFormControlInput1" class="form-label">Hora</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="10:45 am">
+                    <form>
+                        <div class="form-cita">
+                            <div class="mb-3">                           
+                                <label for="exampleFormControlInput1" class="form-label">Hora</label>
+                                <input type="time" class="form-control" id="exampleFormControlInput1" placeholder="10:45 am">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleDataList" class="form-label">Clientes</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected></option>
+                                    <%
+                                        ArrayList<Clientes> List = clientesDao.mostrarClientes();
+                                        for (Clientes elemClientes : List) {
+                                    %>
+                                    <option value="<%=elemClientes.getIdClientes()%>"><%=elemClientes.getNombres_Apellidos()%></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleDataList" class="form-label">Mascota</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected></option>
+                                    <%
+                                        ArrayList<RespaldoM> List1 = mascotasDao.listarMascotas();
+                                        for (RespaldoM elemM : List1) {
+                                    %>
+                                    <option value="<%=elemM.getIdMascotas()%>"><%=elemM.getNombre()%></option>
+                                    <%}%>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleDataList" class="form-label">Veterinario</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected></option>
+                                    <%
+                                        ArrayList<Login> List2 = usuariosDao.mostrarUsuario();
+                                        for (Login elemLogin : List2) {
+                                    %>                            
+                                    <option value="<%=elemLogin.getIdUsuario()%>"><%=elemLogin.getUsuario()%></option>
+                                    <% }%>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Motivo</label>
+                                <input class="form-control" id="exampleFormControlTextarea1" rows="1"></input>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleDataList" class="form-label">Estado</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option value>Pendiente</option>
+                                </select>
+                            </div>
+                            <br>                       
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-success" type="button">Agendar</button>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Estado</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
-                        </div>
-                        <label for="exampleDataList" class="form-label">Clientes</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected></option>
-                            <%
-                                ArrayList<Clientes> List = clientesDao.mostrarClientes();
-                                for (Clientes elemClientes : List) {
-                            %>
-                            <option value="<%=elemClientes.getIdClientes()%>"><%=elemClientes.getNombres_Apellidos()%></option>
-                            <% } %>
-                        </select>
-                        <label for="exampleDataList" class="form-label">Veterinario</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected></option>
-                            <%
-                                ArrayList<Login> List2 = usuariosDao.mostrarUsuario();
-                                for (Login elemLogin : List2) {
-                            %>                            
-                            <option value="<%=elemLogin.getIdUsuarios()%>"><%=elemLogin.getUsuario()%></option>
-                            <% } %>
-                        </select>
-                        <br>                       
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-success" type="button">Agendar</button>
-                        </div>
-                    </div>
+                    </form>
                 </main>
                 <!--- FOOTER>><!--  -->
                 <footer class="py-4 bg-light mt-auto">

@@ -62,7 +62,7 @@ public class UsuariosDao extends Conexion {
 
         try {
             this.conectar();
-            String sql = "INSERT INTO mydb.usuarios(Nombres_Apellidos, Correo_Electronico, Usuario, Password, idCargo) VALUES(?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO usuarios(Nombres_Apellidos, Correo_Electronico, Usuario, Password, idCargo) VALUES(?, ?, ?, ?, ?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
             pre.setString(1, user.getNombres_Apellidos());
             pre.setString(2, user.getCorreo_Electronico());
@@ -123,6 +123,23 @@ public class UsuariosDao extends Conexion {
             this.desconectar();
         }
         
+        return res;
+    
+    
+    }
+    
+    public int listarVet (Login vet){
+        int res = 0;
+        
+        try {
+            this.conectar();
+            String sql ="SELECT * FROM ";
+            
+        } catch (Exception e) {
+            System.out.println("Error al mostrar vet"+ e.getMessage());
+        } finally {
+            this.desconectar();
+        }
         return res;
     
     

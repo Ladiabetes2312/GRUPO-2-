@@ -5,12 +5,13 @@ Conexion\Conexion.class
 com\mycompany\colitasfelices\JakartaRestConfiguration.class
 Dao\RazaDao.class
 Model\Mascotas.class
-Controller\CitasDao.class
+Controller\EliminarCliente.class
 Dao\LoginDao.class
 Controller\ValidateOtp.class
 Controller\EliminarUser.class
 Dao\SexoDao.class
 Dao\UsuariosDao.class
+Model\Cita.class
 Dao\CargoDao.class
 Model\Login.class
 Dao\Tipo_AnimalDao.class
@@ -20,8 +21,10 @@ Controller\ForgotPassword.class
 Model\Sexo.class
 com\mycompany\colitasfelices\resources\JakartaEE10Resource.class
 Model\Raza.class
+Dao\CitaDao.class
 Model\Cargo.class
 Controller\ClienteController.class
 Controller\NewPassword.class
+Model\RespaldoM.class
 Model\Tipo_Animal.class
 Controller\UsuarioController.class

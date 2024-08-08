@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+
 package Controller;
 
-import Dao.ClientesDao;
 import Model.Clientes;
-import com.google.gson.Gson;
+import Dao.ClientesDao;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,15 +14,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
  * @author josel
  */
 public class ClienteController extends HttpServlet {
-
-    private Gson gson = new Gson();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,6 +35,33 @@ public class ClienteController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
+            String nombres = request.getParameter("txtNombre");
+            String telefono = request.getParameter("txtTelefono");
+            String correo = request.getParameter("txtCorreo");
+            String direccion = request.getParameter("txtDireccion");
+            String dni = request.getParameter("txtDNI");
+
+            String mensaje = "";
+
+            int res;
+
+            Clientes cli = new Clientes(0, nombres, telefono, correo, direccion, dni);
+            ClientesDao clientesDao = new ClientesDao();
+
+            if (request.getParameter("btnGuardar") != null) {
+
+                res = clientesDao.insertarCliente(cli);
+                if (res != 0) {
+                    mensaje = "Registro Agregado";
+
+                }
+
+            }
+            request.setAttribute("message", mensaje);
+            request.getRequestDispatcher("/Clientes.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            System.out.println("Error" + e.getLocalizedMessage());
         }
     }
 
@@ -67,72 +91,17 @@ public class ClienteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        try {
-            ArrayList<String> data = new ArrayList<String>();
-            PrintWriter out = response.getWriter();
-
-            String nombres = request.getParameter("txtNombre");
-            String telefono = request.getParameter("txtTelefono");
-            String correo = request.getParameter("txtCorreo");
-            String direccion = request.getParameter("txtDireccion");
-            String dni = request.getParameter("txtDNI");
-            String accion = request.getParameter("accion");
-            String mensaje = "";
-            switch (accion) {
-                case "add":
-                    Clientes cli = new Clientes(0, nombres, telefono, correo, direccion, dni);
-                    mensaje = addRegistro(cli);
-                    break;
-
-                case "show":
-                    break;
-
-                case "getEdit":
-                    //
-                    break;
-
-                case "edit":
-                    //
-                    break;
-
-                case "delete":
-
-                    break;
-                default:
-                    mensaje = "No esta disponible ";
-
-            }
-
-            data.add(mensaje);
-
-            String dataJSON = this.gson.toJson(data);
-
-            response.setContentType("application/json");
-            response.setCharacterEncoding("utf-8");
-            out.print(dataJSON);
-
-        } catch (Exception e) {
-            System.out.println("Error en Servlet" + e.getLocalizedMessage());
-        }
+        processRequest(request, response);
     }
 
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
-    private String addRegistro(Clientes cli) {
-        int resp;
-        String mensaje = "Error DAAA"; 
-        ClientesDao obj = new ClientesDao();
-        resp = obj.insertarCliente(cli);
-
-        if (resp != 0) {
-            mensaje = "Registro Agregado";
-        }
-        return mensaje;
-
-    }
 
 }

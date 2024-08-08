@@ -14,18 +14,22 @@ import java.util.ArrayList;
 *
 * @author JOSUEDAVID
 */
-public class RazaDao {
+public class RazaDao extends Conexion {
     private Conexion c;
  
     public RazaDao(Conexion conexion) {
         this.c = conexion;
     }
+
+    public RazaDao() {
+    }
+    
     public ArrayList<Raza> mostrarRaza(){
         ArrayList<Raza> lista = new ArrayList<>();
         try {
-            this.c.conectar();
-            String sql = "SELECT * FROM mybd.raza;";
-            try (PreparedStatement pre = this.c.getCon().prepareStatement(sql);ResultSet rs = pre.executeQuery()){
+            this.conectar();
+            String sql = "SELECT * FROM mydb.raza;";
+            try (PreparedStatement pre = this.getCon().prepareStatement(sql);ResultSet rs = pre.executeQuery()){
                 while (rs.next()){
                     Raza rz = new Raza();
                     rz.setIdRaza(rs.getInt(1));
@@ -36,7 +40,7 @@ public class RazaDao {
         } catch (Exception e) {
             System.out.println("error al mostrar " + e.getMessage());
         } finally {
-            this.c.desconectar();
+            this.desconectar();
         }
         return lista;
     }

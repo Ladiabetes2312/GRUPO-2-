@@ -14,18 +14,22 @@ import java.util.ArrayList;
 *
 * @author JOSUEDAVID
 */
-public class Tipo_AnimalDao {
+public class Tipo_AnimalDao extends Conexion {
     private Conexion c;
  
     public Tipo_AnimalDao(Conexion conexion) {
         this.c = conexion;
     }
+
+    public Tipo_AnimalDao() {
+    }
+    
     public ArrayList<Tipo_Animal> mostrarTipo_Animal(){
         ArrayList<Tipo_Animal> lista = new ArrayList<>();
         try {
-            this.c.conectar();
-            String sql = "SELECT * FROM mybd.tipo_de_animal;";
-            try (PreparedStatement pre = this.c.getCon().prepareStatement(sql);ResultSet rs = pre.executeQuery()){
+            this.conectar();
+            String sql = "SELECT * FROM mydb.tipo_de_animal";
+            try (PreparedStatement pre = this.getCon().prepareStatement(sql);ResultSet rs = pre.executeQuery()){
                 while (rs.next()){
                     Tipo_Animal ta = new Tipo_Animal();
                     ta.setIdTipo_De_Animal(rs.getInt(1));
@@ -34,9 +38,9 @@ public class Tipo_AnimalDao {
                 }
             }
         } catch (Exception e) {
-            System.out.println("error al mostrar " + e.getMessage());
+            System.out.println("error al mostrar tipos  " + e.getMessage());
         } finally {
-            this.c.desconectar();
+            this.desconectar();
         }
         return lista;
     }
