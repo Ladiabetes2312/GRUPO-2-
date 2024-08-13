@@ -4,7 +4,6 @@
  */
 package Model;
 
-import java.time.LocalTime;
 
 /**
  *
@@ -13,7 +12,7 @@ import java.time.LocalTime;
 public class Cita {
     
     private int idCita;
-    private LocalTime Hora_Cita;
+    private String Hora_Cita;
     private int Mascotas_idMascotas;
     private String Nombre ;
     private int  M_idClientes;
@@ -21,20 +20,20 @@ public class Cita {
     private int idUser ;
     private String Nombres_Apellidos;
     private int idEstado ;
+    private String Estado_Cita; 
+    private String Motivo ;
 
-    public Cita(int idCita, LocalTime Hora_Cita, int Mascotas_idMascotas, String Nombre, int M_idClientes, String Nombre_Apellidos, int idUser, String Nombres_Apellidos, int idEstado) {
+    public Cita() {
+    }
+
+    public Cita(int idCita, String Hora_Cita, int Mascotas_idMascotas, int M_idClientes, int idUser, int idEstado, String Motivo) {
         this.idCita = idCita;
         this.Hora_Cita = Hora_Cita;
         this.Mascotas_idMascotas = Mascotas_idMascotas;
-        this.Nombre = Nombre;
         this.M_idClientes = M_idClientes;
-        this.Nombre_Apellidos = Nombre_Apellidos;
         this.idUser = idUser;
-        this.Nombres_Apellidos = Nombres_Apellidos;
         this.idEstado = idEstado;
-    }
-
-    public Cita() {
+        this.Motivo = Motivo;
     }
 
     public int getIdCita() {
@@ -45,11 +44,11 @@ public class Cita {
         this.idCita = idCita;
     }
 
-    public LocalTime getHora_Cita() {
+    public String getHora_Cita() {
         return Hora_Cita;
     }
 
-    public void setHora_Cita(LocalTime Hora_Cita) {
+    public void setHora_Cita(String Hora_Cita) {
         this.Hora_Cita = Hora_Cita;
     }
 
@@ -108,7 +107,27 @@ public class Cita {
     public void setIdEstado(int idEstado) {
         this.idEstado = idEstado;
     }
-    
+
+    public String getEstado_Cita() {
+        return Estado_Cita;
+    }
+
+    public void setEstado_Cita(String Estado_Cita) {
+        this.Estado_Cita = Estado_Cita;
+    }
+
+    public String getMotivo() {
+        return Motivo;
+    }
+
+    public void setMotivo(String Motivo) {
+        this.Motivo = Motivo;
+    }
+
+  
+
+ 
+ 
     
     
 }

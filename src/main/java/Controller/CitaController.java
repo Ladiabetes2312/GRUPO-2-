@@ -4,6 +4,9 @@
  */
 package Controller;
 
+import Dao.CitaDao;
+import Model.Cita;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -30,16 +33,33 @@ public class CitaController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CitaController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CitaController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+            String hora = request.getParameter("txtHora");
+            int cliente = Integer.parseInt(request.getParameter("txtCliente"));
+            int mascota = Integer.parseInt(request.getParameter("txtMascota"));
+            int veterinario = Integer.parseInt(request.getParameter("txtVet"));
+            int estado = Integer.parseInt(request.getParameter("txtEstado"));
+            String motivo = request.getParameter("txtMotivo");
+            String mensaje = "";
+            int res;
+
+            Cita cita = new Cita(0, hora, cliente, mascota, veterinario, estado, motivo);
+            CitaDao citaDao = new CitaDao();
+
+            if (request.getParameter("btnAgendar") != null) {
+
+                res = citaDao.programarCita(cita);
+                if (res != 0) {
+                    mensaje = "Cita Programada";
+
+                }
+
+            }
+            request.setAttribute("message", mensaje);
+            request.getRequestDispatcher("/Citas.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            System.out.println("Error al programar la cita" + e.getLocalizedMessage());
         }
     }
 

@@ -16,7 +16,6 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/stylesp.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -42,15 +41,12 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            
-                            
                             <div class="sb-sidenav-menu-heading">RECEPCIONISTA</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="bi bi-universal-access"></i></div>
                                 Gestiones
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            
+                            </a>                           
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="Usuarios.jsp">Usuarios</a>
@@ -58,8 +54,7 @@
                                     <a class="nav-link" href="Mascotas.jsp">Mascotas</a>
                                     <a class="nav-link" href="Citas.jsp">Registrar Cita</a>
                                 </nav>
-                            </div>
-                            
+                            </div>                        
                             <div class="sb-sidenav-menu-heading">Veterinario</div>
                             <a class="nav-link" href="HistorialClinico.jsp">
                                 <div class="sb-nav-link-icon"><i class="bi bi-person-circle"></i></div>
@@ -96,15 +91,14 @@
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Clientes</div>
+                                    <div class="card-body">Citas</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Mostrar Registros</a>
+                                        <a class="small text-white stretched-link" href="${pageContext.servletContext.contextPath}/ListarCitas.jsp">Mostrar Registros</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
@@ -122,6 +116,6 @@
         <script src="assets/demo/chart-area-demo.js"></script>
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="assets/demo/datatables-simple-demo.js"></script>
     </body>
 </html>

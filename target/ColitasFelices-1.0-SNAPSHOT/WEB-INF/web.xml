@@ -32,6 +32,14 @@
         <servlet-name>CitaController</servlet-name>
         <servlet-class>Controller.CitaController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EliminarCita</servlet-name>
+        <servlet-class>Controller.EliminarCita</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarMascota</servlet-name>
+        <servlet-class>Controller.ListarMascota</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>CitaController</servlet-name>
         <url-pattern>/CitaController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarCita</servlet-name>
+        <url-pattern>/EliminarCita</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarMascota</servlet-name>
+        <url-pattern>/ListarMascota</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

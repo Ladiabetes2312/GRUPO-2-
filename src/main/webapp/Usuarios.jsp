@@ -96,6 +96,7 @@
                                     <th>Usuario</th>
                                     <th>Contrasena</th>
                                     <th>Cargo</th>
+                                    <th>Acciones</th>
                                     </thead>
                                     <tbody>
                                         <%
@@ -108,9 +109,7 @@
                                             <td class="usuario"><%=elem.getUsuario()%></td>
                                             <td class="password"><%=elem.getPassword()%></td>
                                             <td class="cargo"><%=elem.getNombreCargo()%></td>
-                                            <td>
-                                                <button type="button" class="btn btn-outline-warning btnEditar" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>                                        
-                                            </td>                                       
+
                                             <td colspan="2">
                                                 <div class="d-flex gap-2">
                                                     <!-- Boton Eliminar -->
@@ -196,10 +195,12 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>               
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.3/dist/sweetalert2.all.min.js"></script>
-        <script src="https://cdn.datatables.net/2.1.2/js/dataTables.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
         <%
             if (request.getAttribute("message") != null) {
         %>

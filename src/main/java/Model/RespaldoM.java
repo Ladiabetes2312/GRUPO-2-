@@ -26,7 +26,7 @@ public class RespaldoM {
     public RespaldoM() {
     }
 
-    public RespaldoM(int idMascotas, String Nombre, LocalDate F_Nacimiento, int Clientes_idClientes, String Nombres_Apellidos, int idRaza, String Descripcion, int idSexo, String Sexo, int Tipo_De_Animal_idTipo_De_Animal, String Tipo) {
+    public RespaldoM(int idMascotas, String Nombre, LocalDate F_Nacimiento, int Clientes_idClientes, String Nombres_Apellidos, int idRaza, String Descripcion, int idSexo, String Sexo, int idTipo_De_Animal, String Tipo) {
         this.idMascotas = idMascotas;
         this.Nombre = Nombre;
         this.F_Nacimiento = F_Nacimiento;
@@ -36,7 +36,7 @@ public class RespaldoM {
         this.Descripcion = Descripcion;
         this.idSexo = idSexo;
         this.Sexo = Sexo;
-        this.idTipo_De_Animal = Tipo_De_Animal_idTipo_De_Animal;
+        this.idTipo_De_Animal = idTipo_De_Animal;
         this.Tipo = Tipo;
     }
 
@@ -127,8 +127,4 @@ public class RespaldoM {
     public void setTipo(String Tipo) {
         this.Tipo = Tipo;
     }
-    
-    
- 
- 
 }

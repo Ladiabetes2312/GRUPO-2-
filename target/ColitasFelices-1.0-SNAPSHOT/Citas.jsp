@@ -13,6 +13,9 @@
 <%@page import="Model.Mascotas"%>
 <%@page import="Dao.UsuariosDao"%>
 <%@page import="Model.Login"%>
+<%@page import="Model.EstadoCita"%>
+<%@page import="Dao.EstadoCitaDao"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +37,7 @@
             UsuariosDao usuariosDao = new UsuariosDao();
             MascotasDao mascotasDao = new MascotasDao();
             ClientesDao clientesDao = new ClientesDao();
+            EstadoCitaDao estadoCitaDao = new EstadoCitaDao();
         %>
 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -75,28 +79,28 @@
             <div id="layoutSidenav_content">
                 <main>
                     <h1 class="centrar">Programar Cita</h1>
-                    <form>
+                    <form action="${pageContext.servletContext.contextPath}/CitaController" method="POST" id="form"  onsubmit="return validarFormulario()">
                         <div class="form-cita">
                             <div class="mb-3">                           
                                 <label for="exampleFormControlInput1" class="form-label">Hora</label>
-                                <input type="time" class="form-control" id="exampleFormControlInput1" placeholder="10:45 am">
+                                <input  name="txtHora" id="txtHora" type="time" class="form-control" id="exampleFormControlInput1" placeholder="10:45 am">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleDataList" class="form-label">Clientes</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected></option>
+                                <label for="exampleDataList" class="form-label" onchange="cargarMascotas()">Clientes</label>
+                                <select name="txtCliente" id="txtCliente" class="form-select" aria-label="Default select example">
+                                    <option selected>..Seleccionar Cliente..</option>
                                     <%
                                         ArrayList<Clientes> List = clientesDao.mostrarClientes();
                                         for (Clientes elemClientes : List) {
                                     %>
                                     <option value="<%=elemClientes.getIdClientes()%>"><%=elemClientes.getNombres_Apellidos()%></option>
-                                    <% } %>
+                                    <%}%>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleDataList" class="form-label">Mascota</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected></option>
+                                <select name="txtMascota" id="txtMascota" class="form-select" aria-label="Default select example">
+                                    <option selected>..Seleccionar Mascota..</option>
                                     <%
                                         ArrayList<RespaldoM> List1 = mascotasDao.listarMascotas();
                                         for (RespaldoM elemM : List1) {
@@ -107,8 +111,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleDataList" class="form-label">Veterinario</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected></option>
+                                <select name="txtVet" id="txtVet" class="form-select" aria-label="Default select example" >
+                                    <option selected>..Seleccionar Veterinario..</option>
                                     <%
                                         ArrayList<Login> List2 = usuariosDao.mostrarUsuario();
                                         for (Login elemLogin : List2) {
@@ -119,17 +123,24 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Motivo</label>
-                                <input class="form-control" id="exampleFormControlTextarea1" rows="1"></input>
+                                <input input type="text" id="txtMotivo" name="txtMotivo" class="form-control"  maxlength="90"></input>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleDataList" class="form-label">Estado</label>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option value>Pendiente</option>
+                                <select  name="txtEstado" id="txtEstado" class="form-select" aria-label="Default select example">
+                                    <option selected>....</option>
+                                    <%
+                                        ArrayList<EstadoCita> List3 = estadoCitaDao.listarEstado();
+                                        for (EstadoCita elemEst : List3) {
+                                    %>
+                                    <option value="<%=elemEst.getIdEstado_Cita()%>"><%=elemEst.getEstado_Cita()%></option>
+                                    <%}%>
                                 </select>
                             </div>
                             <br>                       
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-success" type="button">Agendar</button>
+                                <button type="submit"  name="btnAgendar" class="btn btn-success" type="button">Agendar</button>
+                                <button type="button" class="btn btn-info" onclick="location.href = 'ListarCitas.jsp'">Citas Programadas</button>
                             </div>
                         </div>
                     </form>
@@ -147,10 +158,18 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="js/chart-area-demo.js"></script>
+        <script src="js/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <%
+            if (request.getAttribute("message") != null) {
+        %>
+        <script>alert('<%=request.getAttribute("message")%>')</script>
+        <%
+            }
+        %>
+        <script src="${pageContext.servletContext.contextPath}/js/ValidarCita.js"></script>
     </body>
 </html>
 

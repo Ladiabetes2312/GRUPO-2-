@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * DAO para la entidad Mascotas.
@@ -28,9 +29,9 @@ public class MascotasDao extends Conexion {
             this.conectar();
             String sql = "SELECT  \n"
                     + "    mas.idMascotas,\n"
-                    + "    mas.Nombre AS NombreMascota,\n"
+                    + "    mas.Nombre,\n"
                     + "    mas.F_Nacimiento,\n"
-                    + "    cli.Nombres_Apellidos AS Nombres_Apellidos,\n"
+                    + "    cli.Nombres AS Nombres,\n"
                     + "    ra.Descripcion AS Raza,\n"
                     + "    sex.Descripcion AS Sexo,\n"
                     + "    tda.Descripcion AS tipo_Animal\n"
@@ -68,7 +69,7 @@ public class MascotasDao extends Conexion {
         int res = 0;
         try {
             this.conectar();
-            String sql = "INSERT INTO mascotas (Nombre, F_Nacimiento, Clientes_idClientes, Raza_idRaza, Sexo_idSexo, Tipo_De_Animal_idTipo_De_Animal) "
+            String sql = "INSERT INTO mydb.mascotas (Nombre, F_Nacimiento, Clientes_idClientes, idRaza, idSexo, idTipo_De_Animal) "
                     + "VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
             pre.setDate(2, Date.valueOf(m.getF_Nacimiento()));
@@ -76,7 +77,7 @@ public class MascotasDao extends Conexion {
             pre.setInt(3, m.getIdRaza());
             pre.setInt(4, m.getIdSexo());
             pre.setInt(5, m.getidTipo_De_Animal());
-            
+
             res = pre.executeUpdate();
 
         } catch (SQLException e) {
@@ -87,11 +88,8 @@ public class MascotasDao extends Conexion {
         return res;
 
     }
-    
-    
-    
-    
-    public int eliminarMascota(int idMascotas){
+
+    public int eliminarMascota(int idMascotas) {
         int res = 0;
 
         try {
@@ -100,14 +98,35 @@ public class MascotasDao extends Conexion {
             PreparedStatement pre = this.getCon().prepareStatement(sql);
             pre.setInt(1, idMascotas);
             res = pre.executeUpdate();
-            
+
         } catch (SQLException e) {
-            System.out.println("Error al insertar mascota " + e.getMessage());
+            System.out.println("Error al eliminar mascota " + e.getMessage());
         } finally {
             this.desconectar();
         }
         return res;
-    
-    
+
+    }
+
+    public List<RespaldoM> listarMascotasPorCliente(int clienteId) {
+        List<RespaldoM> lista = new ArrayList<>();
+        try {
+            this.conectar();
+            String sql = "SELECT * FROM mascotas WHERE Clientes_idClientes = ?";
+            PreparedStatement ps = this.getCon().prepareStatement(sql);
+            ps.setInt(1, clienteId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                RespaldoM mascota = new RespaldoM();
+                mascota.setIdMascotas(rs.getInt(1));
+                mascota.setNombre(rs.getString(2));
+                lista.add(mascota);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al listar mascotas dao: " + e.getMessage());
+        } finally {
+            this.desconectar();
+        }
+        return lista;
     }
 }

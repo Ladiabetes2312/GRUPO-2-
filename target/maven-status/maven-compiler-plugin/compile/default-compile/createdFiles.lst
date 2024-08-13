@@ -1,5 +1,7 @@
 Controller\LoginServlet.class
+Dao\EstadoCitaDao.class
 Model\Clientes.class
+Controller\CitaController.class
 Dao\MascotasDao.class
 Conexion\Conexion.class
 com\mycompany\colitasfelices\JakartaRestConfiguration.class
@@ -12,6 +14,7 @@ Controller\EliminarUser.class
 Dao\SexoDao.class
 Dao\UsuariosDao.class
 Model\Cita.class
+Controller\MascotaController.class
 Dao\CargoDao.class
 Model\Login.class
 Dao\Tipo_AnimalDao.class
@@ -20,11 +23,13 @@ Controller\ForgotPassword$1.class
 Controller\ForgotPassword.class
 Model\Sexo.class
 com\mycompany\colitasfelices\resources\JakartaEE10Resource.class
+Model\EstadoCita.class
 Model\Raza.class
 Dao\CitaDao.class
 Model\Cargo.class
 Controller\ClienteController.class
 Controller\NewPassword.class
+Controller\MascotaC.class
 Model\RespaldoM.class
 Model\Tipo_Animal.class
 Controller\UsuarioController.class

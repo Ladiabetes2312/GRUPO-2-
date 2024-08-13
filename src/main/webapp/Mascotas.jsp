@@ -67,27 +67,23 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-
                             <div class="sb-sidenav-menu-heading">Principal</div>
                             <a class="nav-link" href="menu.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Menu Principal
                             </a>
-
                             <div class="sb-sidenav-menu-heading">Gestiones</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Clientes
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="Clientes.jsp">Clientes</a>
                                     <a class="nav-link" href="Mascotas.jsp">Mascotas</a>
                                 </nav>
                             </div>
-
                             <div class="sb-sidenav-menu-heading">Gestiones</div>
                             <a class="nav-link" href="Usuarios.jsp">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
@@ -143,7 +139,7 @@
                                             <td colspan="2">
                                                 <div class="d-flex gap-2">
                                                     <!-- Boton Eliminar -->
-                                                    <form action="${pageContext.servletContext.contextPath}/EliminarUser" method="POST">
+                                                    <form action="${pageContext.servletContext.contextPath}/MascotaC" method="POST">
                                                         <input type="hidden" name="id" value="">
                                                         <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro de eliminar a esta mascota?')">Eliminar</button>
                                                     </form>
@@ -167,7 +163,7 @@
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Mascota</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <form action="${pageContext.servletContext.contextPath}/" method="POST" id="form">
+                                    <form action="${pageContext.servletContext.contextPath}/MascotaController" method="POST" id="form">
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-6">
@@ -209,7 +205,7 @@
                                                 </div>
                                                 <label type="hidden">.</label>
                                                 <div class="col-6">
-                                                    <select name="txtSexo" id="Sexo" class="form-select"required>
+                                                    <select name="txtSexo" id="txtSexo" class="form-select"required>
                                                         <option value="firts">..Sexo..</option>
                                                         <%
                                                             ArrayList<Sexo> List2 = sexoDao.mostrarSexo();
@@ -261,9 +257,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="demo/assets/js/chart-area-demo.js"></script>
+        <script src="demo/assets/js/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-         </body>
+        <script src="demo/assets/datatables-simple-demo.js"></script>
+        </body>
 </html>

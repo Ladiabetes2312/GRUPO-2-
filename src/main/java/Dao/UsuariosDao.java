@@ -133,7 +133,7 @@ public class UsuariosDao extends Conexion {
         
         try {
             this.conectar();
-            String sql ="SELECT * FROM ";
+            String sql ="";
             
         } catch (Exception e) {
             System.out.println("Error al mostrar vet"+ e.getMessage());

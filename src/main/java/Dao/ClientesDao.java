@@ -59,7 +59,7 @@ public class ClientesDao extends Conexion {
 
         try {
             this.conectar();
-            String sql = "INSERT INTO clientes (Nombres_Apellidos, Telefono, Correo_Electronico, Direccion, DNI) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO clientes (Nombres, Telefono, Correo_Electronico, Direccion, DNI) VALUES (?,?,?,?,?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
             pre.setString(1, cli.getNombres_Apellidos());
             pre.setString(2, cli.getTelefono());
