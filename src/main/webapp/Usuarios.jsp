@@ -91,12 +91,12 @@
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
+                                    <th>ID</th>
                                     <th>Nombres y Apellidos</th>
                                     <th>Correo Electronico</th>
                                     <th>Usuario</th>
                                     <th>Contrasena</th>
-                                    <th>Cargo</th>
-                                    <th>Acciones</th>
+                                    <th>Cargo</th>                     
                                     </thead>
                                     <tbody>
                                         <%
@@ -104,18 +104,21 @@
                                             for (Login elem : lista) {
                                         %>
                                         <tr>
+                                            <td class="id"><%=elem.getIdUsuario()%></td>
                                             <td class="nombres"><%=elem.getNombres_Apellidos()%></td>
                                             <td class="correo"><%=elem.getCorreo_Electronico()%></td>
                                             <td class="usuario"><%=elem.getUsuario()%></td>
                                             <td class="password"><%=elem.getPassword()%></td>
                                             <td class="cargo"><%=elem.getNombreCargo()%></td>
-
+                                            <td>
+                                                <button type="button" class="btn btn-outline-warning btnEditar" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></button>                                        
+                                            </td>
                                             <td colspan="2">
                                                 <div class="d-flex gap-2">
                                                     <!-- Boton Eliminar -->
                                                     <form action="${pageContext.servletContext.contextPath}/EliminarUser" method="POST">
                                                         <input type="hidden" name="id" value="">
-                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro de eliminar a este Usuario?')">Eliminar</button>
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro de eliminar a este Usuario?')"><i class="fa-solid fa-trash"></i></button>
                                                     </form>
                                                 </div>
                                         </tr>
@@ -136,6 +139,10 @@
                                         <form action="${pageContext.servletContext.contextPath}/UsuarioController" method="POST" id="form">
                                             <div class="modal-body">
                                                 <table class="table">
+                                                    <tr>
+                                                        <td>ID</td>
+                                                        <td><input type="text" id="txtID" name="txtID" class="form-control" value="0" readonly="true"></td> 
+                                                    </tr>
                                                     <tr>
                                                         <td>Nombres</td>
                                                         <td><input type="text" id="txtNombre" name="txtNombre" class="form-control"></td>
@@ -188,12 +195,12 @@
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted"> &copy;Colitas Felices 2024</div>
-
                         </div>
                     </div>
                 </footer>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

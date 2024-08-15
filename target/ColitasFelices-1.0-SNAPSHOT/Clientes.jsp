@@ -88,10 +88,9 @@
                         </div>
                         <div class="card">
                             <div class="row">
-                                <div class="col-8"><h3></h3></div>
-                                <div class="col-4 aling-self-center">
+                                <div class="col-1 aling-self-left">
                                     <div class="d-grid gap-2">
-                                        <button type="button" id="btnAdd" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+                                        <button type="button" id="btnAdd" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-user-plus"></i></button>
                                     </div>
                                 </div>                                   
                             </div>
@@ -106,7 +105,7 @@
                                                     <th>Correo</th>
                                                     <th>Direccion</th>
                                                     <th>DNI</th>
-                                                    <th>Acciones</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -120,13 +119,15 @@
                                             <td class="correo"><%=elem.getCorreo_Electronico()%></td>
                                             <td class="direccion"><%=elem.getDireccion()%></td>
                                             <td class="dni"><%=elem.getDNI()%></td>
-
+                                            <td>
+                                                <button type="button" class="btn btn-outline-warning btnEditar" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></button>                                        
+                                            </td>
                                             <td colspan="2">
                                                 <div class="d-flex gap-2">
                                                     <!-- Boton Eliminar -->
                                                     <form action="${pageContext.servletContext.contextPath}/EliminarCliente" method="POST">
-                                                        <input type="hidden" name="id" value="">
-                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro de eliminar a este Cliente?')">Eliminar</button>
+                                                        <input type="hidden" name="id" value="<%=elem.getIdClientes()%>">
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro de eliminar a este Cliente?')"><i class="fa-solid fa-trash"></i></button>
                                                     </form>
                                                 </div>
                                                 </tr>

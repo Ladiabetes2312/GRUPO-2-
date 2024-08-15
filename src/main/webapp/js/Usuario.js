@@ -4,13 +4,18 @@
  */
 
 function llenarFormulario(fila) {
+    
+    var id = $(fila).find(".id").text();
+    console.log(id);
+    
     var nombres = $(fila).find(".nombres").text();
     var correo = $(fila).find(".correo").text();
     var usuario = $(fila).find(".usuario").text();
     var password = $(fila).find(".password").text();
     var cargo = $(fila).find(".cargo").text();
-
-
+ 
+    
+    $("#txtID").val(id);
     $("#txtNombre").val(nombres);
     $("#txtCorreo").val(correo);
     $("#txtUsuario").val(usuario);
@@ -18,8 +23,8 @@ function llenarFormulario(fila) {
     $("#txtCargo option[selected]").removeAttr('selected');
     $("#txtCargo option:contains(" + cargo + ")").attr('selected', true);
 }
-
-
+ 
+ 
 $(document).ready(function () {
     $("#exampleModal").on("hidden.bs.modal", function () {
         $("#form")[0].reset();

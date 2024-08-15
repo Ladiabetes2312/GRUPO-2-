@@ -83,6 +83,7 @@
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
+                                                    <th>ID</th>
                                                     <th>Hora Programada</th>
                                                     <th>Mascota</th>
                                                     <th>Estado</th>
@@ -93,8 +94,8 @@
                                                 <%
                                                     List<Cita> lista = citaDao.listarCitas();
                                                     for (Cita elem : lista) {
-                                                    
                                                 %>
+                                            <td class="id"><%=elem.getIdCita()%></td>
                                             <td class="nombres"><%=elem.getHora_Cita()%></td>
                                             <td class="telefono"><%=elem.getNombre()%></td>
                                             <td class="correo"><%=elem.getEstado_Cita()%></td>

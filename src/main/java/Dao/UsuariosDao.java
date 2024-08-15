@@ -25,7 +25,7 @@ public class UsuariosDao extends Conexion {
     }
 
     public UsuariosDao() {
-        
+
     }
 
     public ArrayList<Login> mostrarUsuario() {
@@ -44,7 +44,7 @@ public class UsuariosDao extends Conexion {
                     login.setPassword(rs.getString(5));
                     login.setIdCargo(rs.getInt(6));
                     login.setNombreCargo(rs.getString(8));
-                    
+
                     lista.add(login);
                 }
             }
@@ -69,8 +69,8 @@ public class UsuariosDao extends Conexion {
             pre.setString(3, user.getUsuario());
             pre.setString(4, user.getPassword());
             pre.setInt(5, user.getIdCargo());
-             
-            res= pre.executeUpdate();
+
+            res = pre.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println("Error al insertar" + e.getMessage());
@@ -80,34 +80,34 @@ public class UsuariosDao extends Conexion {
         return res;
 
     }
-    
-    public int modificarUsuario (Login usu) {
-        
-        int res = 0 ;
-        
+
+    public int modificarUsuario(Login usu) {
+
+        int res = 0;
+
         try {
             this.conectar();
             String sql = "UPDATE usuarios SET Nombres_Apellidos=?, Correo_Electronico=?, Usuario=?, Password=?, idCargo=? WHERE idUsuario=?";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
-            
+
             pre.setString(1, usu.getNombres_Apellidos());
             pre.setString(2, usu.getCorreo_Electronico());
             pre.setString(3, usu.getUsuario());
             pre.setString(4, usu.getPassword());
             pre.setInt(5, usu.getIdCargo());
             pre.setInt(6, usu.getIdUsuario());
-            
-            res= pre.executeUpdate();
-            
+
+            res = pre.executeUpdate();
+
         } catch (SQLException e) {
-            System.out.println("Error al modificar"+ e.getMessage());
+            System.out.println("Error al modificar" + e.getMessage());
         } finally {
             this.desconectar();
         }
         return res;
     }
-    
-    public int eliminarUsuario (int idUsuario){
+
+    public int eliminarUsuario(int idUsuario) {
         int res = 0;
 
         try {
@@ -116,32 +116,35 @@ public class UsuariosDao extends Conexion {
             PreparedStatement pre = this.getCon().prepareStatement(sql);
             pre.setInt(1, idUsuario);
             res = pre.executeUpdate();
-            
+
         } catch (SQLException e) {
-            System.out.println("Error al eliminar"+ e.getMessage());
+            System.out.println("Error al eliminar" + e.getMessage());
         } finally {
             this.desconectar();
         }
-        
+
         return res;
-    
-    
+
     }
-    
-    public int listarVet (Login vet){
-        int res = 0;
-        
+
+    public ArrayList<Login> listarVet() {
+        ArrayList<Login> lista = new ArrayList<>();
         try {
             this.conectar();
-            String sql ="";
-            
-        } catch (Exception e) {
-            System.out.println("Error al mostrar vet"+ e.getMessage());
+            String sql = "SELECT idUsuario, Nombres_Apellidos FROM usuarios WHERE idCargo = 1";
+            try (PreparedStatement pre = this.getCon().prepareStatement(sql); ResultSet rs = pre.executeQuery()) {
+                while (rs.next()) {
+                    Login login = new Login();
+                    login.setIdUsuario(rs.getInt(1));
+                    login.setNombres_Apellidos(rs.getString(2));
+                    lista.add(login);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al mostrar " + e.getMessage());
         } finally {
             this.desconectar();
         }
-        return res;
-    
-    
+        return lista;
     }
 }

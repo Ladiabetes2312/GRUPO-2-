@@ -114,16 +114,16 @@
                                 <select name="txtVet" id="txtVet" class="form-select" aria-label="Default select example" >
                                     <option selected>..Seleccionar Veterinario..</option>
                                     <%
-                                        ArrayList<Login> List2 = usuariosDao.mostrarUsuario();
+                                        ArrayList<Login> List2 = usuariosDao.listarVet();
                                         for (Login elemLogin : List2) {
                                     %>                            
-                                    <option value="<%=elemLogin.getIdUsuario()%>"><%=elemLogin.getUsuario()%></option>
+                                    <option value="<%=elemLogin.getIdUsuario()%>"><%=elemLogin.getNombres_Apellidos()%></option>
                                     <% }%>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Motivo</label>
-                                <input input type="text" id="txtMotivo" name="txtMotivo" class="form-control"  maxlength="90"></input>
+                                <input input type="text" id="txtMotivo" name="txtMotivo" class="form-control"  maxlength="40"></input>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleDataList" class="form-label">Estado</label>

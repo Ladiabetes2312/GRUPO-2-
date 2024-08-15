@@ -33,6 +33,7 @@ public class UsuarioController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            int id = Integer.parseInt(request.getParameter("txtID"));
             String nombre = request.getParameter("txtNombre");
             String correo = request.getParameter("txtCorreo");
             String usuario = request.getParameter("txtUsuario");
@@ -41,7 +42,7 @@ public class UsuarioController extends HttpServlet {
             String mensaje = "";
             int res;
 
-            Login usu = new Login(0, nombre, correo, usuario, password, cargo, nombre);
+            Login usu = new Login(id, nombre, correo, usuario, password, cargo, nombre);
             UsuariosDao usuariosDao = new UsuariosDao();
 
             if (request.getParameter("btnGuardar") != null) {
