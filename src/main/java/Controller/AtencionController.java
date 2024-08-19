@@ -4,41 +4,62 @@
  */
 package Controller;
 
-import Dao.MascotasDao;
-import Model.RespaldoM;
-import com.google.gson.Gson;
+import Model.R_Atencion;
+import Dao.R_AtencionDao;
 
-import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
 
 /**
  *
  * @author josel
  */
-public class ListarMascota extends HttpServlet {
+public class AtencionController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String clienteId = request.getParameter("clienteId");
-        MascotasDao mascotasDao = new MascotasDao();
-        List<RespaldoM> mascotasList = mascotasDao.listarMascotasPorCliente(Integer.parseInt(clienteId));
-
         try (PrintWriter out = response.getWriter()) {
-            Gson gson = new Gson();
-            String jsonMascotas = gson.toJson(mascotasList);
-            out.print(jsonMascotas);
 
+            String hora = request.getParameter("txtHora");
+            Date fechaVisita = Date.valueOf(request.getParameter("txtFecha"));
+            String motivoVisita = request.getParameter("txtMotivos");
+            String estadoMascota = request.getParameter("txtEstadoMascota");
+            String diagnosticoGenerado = request.getParameter("txtDiagnostico");
+            String tratamiento = request.getParameter("txtTratamientos");
+            String observaciones = request.getParameter("txtObservaciones");
+            int citasIdCitas = Integer.parseInt(request.getParameter("idCita"));
+            String mensaje = "";
+            int res = 0;
+
+            R_Atencion r_Atencion = new R_Atencion(0, hora, fechaVisita, motivoVisita, estadoMascota, diagnosticoGenerado, tratamiento, observaciones, citasIdCitas);
+
+            R_AtencionDao r_AtencionDao = new R_AtencionDao();
+
+            if (request.getParameter("btnGuardar") != null) {
+
+                res = r_AtencionDao.agregarRegistro(r_Atencion);
+                if (res != 0) {
+                    mensaje = "Registro Agregado";
+
+                }
+
+            }
+            request.setAttribute("message", mensaje);
+            request.getRequestDispatcher("/Registro_de_Atencion.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            System.out.println("Error en servlet" + e.getLocalizedMessage());
         }
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

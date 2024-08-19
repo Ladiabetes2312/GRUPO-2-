@@ -1,8 +1,9 @@
 package Dao;
 
 import Conexion.Conexion;
-import Model.RespaldoM;
+import Model.Mascotas;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,18 +24,18 @@ public class MascotasDao extends Conexion {
     public MascotasDao() {
     }
 
-    public ArrayList<RespaldoM> listarMascotas() {
-        ArrayList<RespaldoM> lista = new ArrayList<>();
+    public ArrayList<Mascotas> listarMascotas() {
+        ArrayList<Mascotas> lista = new ArrayList<>();
         try {
             this.conectar();
             String sql = "SELECT  \n"
                     + "    mas.idMascotas,\n"
-                    + "    mas.Nombre,\n"
+                    + "    mas.NombreM,\n"
                     + "    mas.F_Nacimiento,\n"
                     + "    cli.Nombres AS Nombres,\n"
-                    + "    ra.Descripcion AS Raza,\n"
-                    + "    sex.Descripcion AS Sexo,\n"
-                    + "    tda.Descripcion AS tipo_Animal\n"
+                    + "    ra.Raza AS Raza,\n"
+                    + "    sex.Sexo AS Sexo,\n"
+                    + "    tda.Tipo AS tipo_Animal\n"
                     + "FROM \n"
                     + "    mydb.mascotas mas\n"
                     + "    INNER JOIN mydb.clientes cli ON mas.Clientes_idClientes = cli.idClientes\n"
@@ -45,12 +46,12 @@ public class MascotasDao extends Conexion {
             try (PreparedStatement pre = this.getCon().prepareStatement(sql); ResultSet rs = pre.executeQuery()) {
 
                 while (rs.next()) {
-                    RespaldoM mascota = new RespaldoM();
+                    Mascotas mascota = new Mascotas();
                     mascota.setIdMascotas(rs.getInt(1));
-                    mascota.setNombre(rs.getString(2));
+                    mascota.setNombreM(rs.getString(2));
                     mascota.setF_Nacimiento(rs.getDate(3).toLocalDate());
-                    mascota.setNombres_Apellidos(rs.getString(4));
-                    mascota.setDescripcion(rs.getString(5));
+                    mascota.setNombres(rs.getString(4));
+                    mascota.setRaza(rs.getString(5));
                     mascota.setSexo(rs.getString(6));
                     mascota.setTipo(rs.getString(7));
                     lista.add(mascota);
@@ -64,19 +65,19 @@ public class MascotasDao extends Conexion {
         return lista;
     }
 
-    public int insertarMascota(RespaldoM m) {
+    public int insertarMascota(Mascotas m) {
 
         int res = 0;
         try {
             this.conectar();
-            String sql = "INSERT INTO mydb.mascotas (Nombre, F_Nacimiento, Clientes_idClientes, idRaza, idSexo, idTipo_De_Animal) "
-                    + "VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO mascotas (NombreM, F_Nacimiento, Clientes_idClientes, idRaza, idSexo, idTipo_De_Animal) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
-            pre.setDate(2, Date.valueOf(m.getF_Nacimiento()));
-            pre.setInt(2, m.getClientes_idClientes());
-            pre.setInt(3, m.getIdRaza());
-            pre.setInt(4, m.getIdSexo());
-            pre.setInt(5, m.getidTipo_De_Animal());
+            pre.setString(1, m.getNombreM());
+            pre.setDate(2, java.sql.Date.valueOf(m.getF_Nacimiento()));
+            pre.setInt(3, m.getClientes_idClientes());
+            pre.setInt(4, m.getIdRaza());
+            pre.setInt(5, m.getIdSexo());
+            pre.setInt(6, m.getIdTipo_De_Animal());
 
             res = pre.executeUpdate();
 
@@ -87,6 +88,32 @@ public class MascotasDao extends Conexion {
         }
         return res;
 
+    }
+
+    public int modificarMascota(Mascotas ms) {
+        int res = 0;
+
+        try {
+            this.conectar();
+            String sql = "UPDATE mascotas SET NombreM=?, F_Nacimiento=?, Clientes_idClientes=?, idRaza=?, idSexo=?, idTipo_De_Animal=? WHERE idMascotas=?";
+            PreparedStatement pre = this.getCon().prepareStatement(sql);
+
+            pre.setString(1, ms.getNombreM());
+            pre.setDate(2, Date.valueOf(ms.getF_Nacimiento()));
+            pre.setInt(3, ms.getClientes_idClientes());
+            pre.setInt(4, ms.getIdRaza());
+            pre.setInt(5, ms.getIdSexo());
+            pre.setInt(6, ms.getIdTipo_De_Animal());
+            pre.setInt(7, ms.getIdMascotas());
+
+            res = pre.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Error al Modificar" + e.getMessage());
+        } finally {
+            this.desconectar();
+        }
+        return res;
     }
 
     public int eliminarMascota(int idMascotas) {
@@ -108,8 +135,8 @@ public class MascotasDao extends Conexion {
 
     }
 
-    public List<RespaldoM> listarMascotasPorCliente(int clienteId) {
-        List<RespaldoM> lista = new ArrayList<>();
+    public List<Mascotas> listarMascotasPorCliente(int clienteId) {
+        List<Mascotas> lista = new ArrayList<>();
         try {
             this.conectar();
             String sql = "SELECT * FROM mascotas WHERE Clientes_idClientes = ?";
@@ -117,9 +144,9 @@ public class MascotasDao extends Conexion {
             ps.setInt(1, clienteId);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                RespaldoM mascota = new RespaldoM();
+                Mascotas mascota = new Mascotas();
                 mascota.setIdMascotas(rs.getInt(1));
-                mascota.setNombre(rs.getString(2));
+                mascota.setNombreM(rs.getString(2));
                 lista.add(mascota);
             }
         } catch (SQLException e) {

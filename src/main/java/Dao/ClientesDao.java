@@ -1,19 +1,17 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+* Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Dao;
 
 import Conexion.Conexion;
 import Model.Clientes;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- *
  * @author JOSUEDAVID
  */
 public class ClientesDao extends Conexion {
@@ -37,7 +35,7 @@ public class ClientesDao extends Conexion {
                 while (rs.next()) {
                     Clientes cli = new Clientes();
                     cli.setIdClientes(rs.getInt(1));
-                    cli.setNombres_Apellidos(rs.getString(2));
+                    cli.setNombres(rs.getString(2));
                     cli.setTelefono(rs.getString(3));
                     cli.setCorreo_Electronico(rs.getString(4));
                     cli.setDireccion(rs.getString(5));
@@ -61,7 +59,7 @@ public class ClientesDao extends Conexion {
             this.conectar();
             String sql = "INSERT INTO clientes (Nombres, Telefono, Correo_Electronico, Direccion, DNI) VALUES (?,?,?,?,?)";
             PreparedStatement pre = this.getCon().prepareStatement(sql);
-            pre.setString(1, cli.getNombres_Apellidos());
+            pre.setString(1, cli.getNombres());
             pre.setString(2, cli.getTelefono());
             pre.setString(3, cli.getCorreo_Electronico());
             pre.setString(4, cli.getDireccion());
@@ -76,6 +74,30 @@ public class ClientesDao extends Conexion {
         }
         return res;
 
+    }
+
+    public int modificarCliente(Clientes cli) {
+        int res = 0;
+
+        try {
+            this.conectar();
+            String sql = "UPDATE clientes SET Nombres=?, Telefono=?, Correo_Electronico=?, Direccion=?, DNi=? WHERE idClientes=?";
+            PreparedStatement pre = this.getCon().prepareStatement(sql);
+
+            pre.setString(1, cli.getNombres());
+            pre.setString(2, cli.getTelefono());
+            pre.setString(3, cli.getCorreo_Electronico());
+            pre.setString(4, cli.getDireccion());
+            pre.setString(5, cli.getDNI());
+            pre.setInt(6, cli.getIdClientes());
+
+            res = pre.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al modifícar" + e.getMessage());
+        } finally {
+            this.desconectar();
+        }
+        return res;
     }
 
     public int eliminarCliente(int idClientes) {

@@ -31,7 +31,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="index.jsp">Cerrar Sesion</a></li>
+                        <li><a href="<%= request.getContextPath()%>/CerrarSesion" class="btn btn-danger">Cerrar Sesión</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -64,7 +65,7 @@
                                 <div class="sb-nav-link-icon"><i class="bi bi-graph-up-arrow"></i></div>
                                 Reportes
                             </a>
-                            <a class="nav-link" href="Registro de Atencion.jsp">
+                            <a class="nav-link" href="Registro_de_Atencion.jsp">
                                 <div class="sb-nav-link-icon"><i class="bi bi-clipboard-data-fill"></i></div>
                                 Registro De Atencion
                             </a>

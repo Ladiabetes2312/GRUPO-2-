@@ -10,29 +10,29 @@ package Model;
 */
 public class Raza {
     private int idRaza;
-    private String Descripcion;
+    private String Raza;
  
     public Raza() {
     }
- 
-    public Raza(int idRaza, String Descripcion) {
+
+    public Raza(int idRaza, String Raza) {
         this.idRaza = idRaza;
-        this.Descripcion = Descripcion;
+        this.Raza = Raza;
     }
- 
+
     public int getIdRaza() {
         return idRaza;
     }
- 
+
     public void setIdRaza(int idRaza) {
         this.idRaza = idRaza;
     }
- 
-    public String getDescripcion() {
-        return Descripcion;
+
+    public String getRaza() {
+        return Raza;
     }
- 
-    public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
+
+    public void setRaza(String Raza) {
+        this.Raza = Raza;
     }
 }

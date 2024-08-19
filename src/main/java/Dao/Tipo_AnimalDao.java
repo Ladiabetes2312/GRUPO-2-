@@ -8,6 +8,7 @@ import Conexion.Conexion;
 import Model.Tipo_Animal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
  
 /**
@@ -33,11 +34,11 @@ public class Tipo_AnimalDao extends Conexion {
                 while (rs.next()){
                     Tipo_Animal ta = new Tipo_Animal();
                     ta.setIdTipo_De_Animal(rs.getInt(1));
-                    ta.setDescripcion(rs.getString(2));
+                    ta.setTipo(rs.getString(2));
                     lista.add(ta);
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("error al mostrar tipos  " + e.getMessage());
         } finally {
             this.desconectar();

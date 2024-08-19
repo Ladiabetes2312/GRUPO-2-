@@ -6,8 +6,6 @@
 function llenarFormulario(fila) {
     
     var id = $(fila).find(".id").text();
-    console.log(id);
-    
     var nombres = $(fila).find(".nombres").text();
     var correo = $(fila).find(".correo").text();
     var usuario = $(fila).find(".usuario").text();
@@ -31,9 +29,6 @@ $(document).ready(function () {
         $("#txtCargo option[selected]").removeAttr('selected');
     });
     $(document).on('click', '.btnEditar', function () {
-        llenarFormulario($(this).closest('tr'));
-    });
-    $(document).on('click', '.btnEliminar', function () {
         llenarFormulario($(this).closest('tr'));
     });
 });

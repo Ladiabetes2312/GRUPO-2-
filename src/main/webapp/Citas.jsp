@@ -4,13 +4,12 @@
     Author     : josel
 --%>
 
-<%@page import="Model.RespaldoM"%>
+<%@page import="Model.Mascotas"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Model.Clientes"%>
 <%@page import="Dao.ClientesDao"%>
 <%@page import="Dao.MascotasDao"%>
-<%@page import="Model.Mascotas"%>
 <%@page import="Dao.UsuariosDao"%>
 <%@page import="Model.Login"%>
 <%@page import="Model.EstadoCita"%>
@@ -86,14 +85,14 @@
                                 <input  name="txtHora" id="txtHora" type="time" class="form-control" id="exampleFormControlInput1" placeholder="10:45 am">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleDataList" class="form-label" onchange="cargarMascotas()">Clientes</label>
+                                <label for="exampleDataList" class="form-label" >Clientes</label>
                                 <select name="txtCliente" id="txtCliente" class="form-select" aria-label="Default select example">
                                     <option selected>..Seleccionar Cliente..</option>
                                     <%
                                         ArrayList<Clientes> List = clientesDao.mostrarClientes();
                                         for (Clientes elemClientes : List) {
                                     %>
-                                    <option value="<%=elemClientes.getIdClientes()%>"><%=elemClientes.getNombres_Apellidos()%></option>
+                                    <option value="<%=elemClientes.getIdClientes()%>"><%=elemClientes.getNombres()%></option>
                                     <%}%>
                                 </select>
                             </div>
@@ -102,10 +101,10 @@
                                 <select name="txtMascota" id="txtMascota" class="form-select" aria-label="Default select example">
                                     <option selected>..Seleccionar Mascota..</option>
                                     <%
-                                        ArrayList<RespaldoM> List1 = mascotasDao.listarMascotas();
-                                        for (RespaldoM elemM : List1) {
+                                        ArrayList<Mascotas> List1 = mascotasDao.listarMascotas();
+                                        for (Mascotas elemM : List1) {
                                     %>
-                                    <option value="<%=elemM.getIdMascotas()%>"><%=elemM.getNombre()%></option>
+                                    <option value="<%=elemM.getIdMascotas()%>"><%=elemM.getNombreM()%></option>
                                     <%}%>
                                 </select>
                             </div>
@@ -118,7 +117,7 @@
                                         for (Login elemLogin : List2) {
                                     %>                            
                                     <option value="<%=elemLogin.getIdUsuario()%>"><%=elemLogin.getNombres_Apellidos()%></option>
-                                    <% }%>
+                                    <%}%>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -162,7 +161,7 @@
         <script src="js/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-        <%
+        <% 
             if (request.getAttribute("message") != null) {
         %>
         <script>alert('<%=request.getAttribute("message")%>')</script>

@@ -10,29 +10,29 @@ package Model;
 */
 public class Sexo {
     private int idSexo;
-    private String Descripcion;
+    private String Sexo;
  
     public Sexo() {
     }
- 
-    public Sexo(int idSexo, String Descripcion) {
+
+    public Sexo(int idSexo, String Sexo) {
         this.idSexo = idSexo;
-        this.Descripcion = Descripcion;
+        this.Sexo = Sexo;
     }
- 
+
     public int getIdSexo() {
         return idSexo;
     }
- 
+
     public void setIdSexo(int idSexo) {
         this.idSexo = idSexo;
     }
- 
-    public String getDescripcion() {
-        return Descripcion;
+
+    public String getSexo() {
+        return Sexo;
     }
- 
-    public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
+
+    public void setSexo(String Sexo) {
+        this.Sexo = Sexo;
     }
 }

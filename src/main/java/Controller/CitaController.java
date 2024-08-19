@@ -33,7 +33,8 @@ public class CitaController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
+            
+            
             String hora = request.getParameter("txtHora");
             int cliente = Integer.parseInt(request.getParameter("txtCliente"));
             int mascota = Integer.parseInt(request.getParameter("txtMascota"));

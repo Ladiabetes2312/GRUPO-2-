@@ -4,6 +4,10 @@
     Author     : josue David
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="Model.Cita"%>
+<%@page import="Dao.CitaDao"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +23,45 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     </head>
+    <style>
+        /* Estilos generales del formulario */
+        .container-fluid {
+            background-color: white;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos específicos para la impresión */
+        @media print {
+            .container-fluid {
+                width: 60%; /* Ajusta el ancho del formulario durante la impresión */
+                margin: 0 auto; /* Centrar el formulario */
+                padding: 0;
+                box-shadow: none;
+                background-color: transparent; /* Fondo transparente para impresión */
+            }
+
+            input, textarea {
+                border: none; /* Quitar los bordes */
+                background-color: transparent; /* Hacer los campos transparentes */
+                box-shadow: none; /* Quitar sombras */
+            }
+
+            button {
+                display: none; /* Ocultar los botones durante la impresión */
+            }
+
+            @page {
+                margin: 20mm; /* Ajusta los márgenes de la página al imprimir */
+            }
+        }
+    </style>
     <body class="sb-nav-fixed">
+        <%
+            CitaDao citaDao = new CitaDao();
+        %>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="menu.jsp">VT Colitas Felices</a>
@@ -52,20 +94,20 @@
             </div>
             <!-- FIN DE BARRA DE MENU -->
             <div id="layoutSidenav_content">
-                <form action="${pageContext.servletContext.contextPath}/" method="POST" id="form">
+                <h1 class="mt-4" style="text-align: center;">Registro de Atención</h1> 
+                <form action="${pageContext.servletContext.contextPath}/AtencionController" method="POST" id="form">
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4" style="text-align: center;">Registro de Atención</h1> 
-                        <div class="row">  
-                            <div class="col">
-                                <input type="time" id="txtHora" name="txtHora" class="form-control input-hora" placeholder="First name">
-                            </div>
+                        <div class="row">
                             <div class="col mb-3">
                                 <input type="date" id="txtFecha" name="txtFecha" class="form-control input-fecha" placeholder="Last name" aria-label="Last name">
                             </div>
+                            <div class="col">
+                                <input type="time" id="txtHora" name="txtHora" class="form-control input-hora" placeholder="First name">
+                            </div>
                         </div>
                         <div class="form-floating mb-3">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="txtMotivo" name="txtMotivo" style="height: 100px"></textarea>
-                            <label for="txtMotivo">Motivo Visita:</label>
+                            <textarea class="form-control" placeholder="Leave a comment here" id="txtMotivos" name="txtMotivos" style="height: 100px"></textarea>
+                            <label for="txtMotivos">Motivo Visita:</label>
                         </div> 
                         <div class="form-floating mb-3">
                             <textarea class="form-control" placeholder="Leave a comment here" id="txtEstadoMascota" name="txtEstadoMascota"></textarea>
@@ -84,6 +126,14 @@
                                 <label for="txtObservaciones" class="form-label">Observaciones</label>
                                 <textarea class="form-control" id="txtObservaciones" name="txtObservaciones" rows="3"></textarea>
                             </div>
+                            <%
+                                List<Cita> lista = citaDao.listarCitas();
+                                for (Cita elem : lista) {
+                            %>
+                            <input type="hidden" name="idCita" id="idCita" value="<%=elem.getIdCita()%>">
+                            <%
+                                }
+                            %>
                         </div>
                         <div class="d-grid gap-2 col-6 mx-auto mb-3">
                             <button type="submit" name="btnGuardar" class="btn btn-success" type="button">Guardar</button>
@@ -98,5 +148,13 @@
             <script src="assets/demo/chart-bar-demo.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
             <script src="js/datatables-simple-demo.js"></script>
+
+            <%
+                if (request.getAttribute("message") != null) {
+            %>
+            <script>alert('<%=request.getAttribute("message")%>')</script>
+            <%
+                }
+            %>
     </body>
 </html>

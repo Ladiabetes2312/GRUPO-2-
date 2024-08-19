@@ -10,29 +10,30 @@ package Model;
 */
 public class Tipo_Animal {
     private int  idTipo_De_Animal;
-    private String Descripcion;
+    private String Tipo;
  
     public Tipo_Animal() {
     }
- 
-    public Tipo_Animal(int idTipo_De_Animal, String Descripcion) {
+
+    public Tipo_Animal(int idTipo_De_Animal, String Tipo) {
         this.idTipo_De_Animal = idTipo_De_Animal;
-        this.Descripcion = Descripcion;
+        this.Tipo = Tipo;
     }
- 
+
     public int getIdTipo_De_Animal() {
         return idTipo_De_Animal;
     }
- 
+
     public void setIdTipo_De_Animal(int idTipo_De_Animal) {
         this.idTipo_De_Animal = idTipo_De_Animal;
     }
- 
-    public String getDescripcion() {
-        return Descripcion;
+
+    public String getTipo() {
+        return Tipo;
+    }
+
+    public void setTipo(String Tipo) {
+        this.Tipo = Tipo;
     }
  
-    public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
-    }
 }

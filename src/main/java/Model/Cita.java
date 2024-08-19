@@ -14,7 +14,7 @@ public class Cita {
     private int idCita;
     private String Hora_Cita;
     private int Mascotas_idMascotas;
-    private String Nombre ;
+    private String NombreM ;
     private int  M_idClientes;
     private String Nombre_Apellidos;
     private int idUser ;
@@ -35,6 +35,18 @@ public class Cita {
         this.idEstado = idEstado;
         this.Motivo = Motivo;
     }
+
+    public Cita(int idCita, String Hora_Cita, String NombreM, int idEstado, String Motivo) {
+        this.idCita = idCita;
+        this.Hora_Cita = Hora_Cita;
+        this.NombreM = NombreM;
+        this.idEstado = idEstado;
+        this.Motivo = Motivo;
+    }
+
+
+
+
 
     public int getIdCita() {
         return idCita;
@@ -60,12 +72,12 @@ public class Cita {
         this.Mascotas_idMascotas = Mascotas_idMascotas;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public String getNombreM() {
+        return NombreM;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombreM(String NombreM) {
+        this.NombreM = NombreM;
     }
 
     public int getM_idClientes() {

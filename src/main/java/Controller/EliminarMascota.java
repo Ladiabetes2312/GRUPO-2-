@@ -4,6 +4,9 @@
  */
 package Controller;
 
+import Model.Mascotas;
+import Dao.MascotasDao;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,29 +16,32 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author josel
+ * @author JOSUEDAVID
  */
-public class MascotaC extends HttpServlet {
+public class EliminarMascota extends HttpServlet {
 
-    /**s
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-            
-            
-            
-
+            try {
+                int idMascota = Integer.parseInt(request.getParameter("id"));
+                
+                MascotasDao mascotasDao = new MascotasDao();
+                
+                int filasAfectadas = mascotasDao.eliminarMascota(idMascota);
+                
+                if(filasAfectadas > 0){
+                    request.setAttribute("message", "Mascota Eliminada Correctamente");
+                } else{
+                    request.setAttribute("message", "Error al eliminar la mascota");
+                }
+                
+                request.getRequestDispatcher("/Mascotas.jsp").forward(request, response);
+            } catch (Exception e) {
+                System.out.println("Error" + e.getMessage());
+                e.printStackTrace();
+            }
         }
     }
 

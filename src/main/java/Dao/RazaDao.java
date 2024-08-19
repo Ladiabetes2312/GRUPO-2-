@@ -8,6 +8,7 @@ import Conexion.Conexion;
 import Model.Raza;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
  
 /**
@@ -33,11 +34,11 @@ public class RazaDao extends Conexion {
                 while (rs.next()){
                     Raza rz = new Raza();
                     rz.setIdRaza(rs.getInt(1));
-                    rz.setDescripcion(rs.getString(2));
+                    rz.setRaza(rs.getString(2));
                     lista.add(rz);
                 }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("error al mostrar " + e.getMessage());
         } finally {
             this.desconectar();

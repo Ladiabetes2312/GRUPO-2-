@@ -1,21 +1,52 @@
-/*
-* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-* Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
-*/
 package Model;
 
 import java.time.LocalDate;
 
+/**
+ *
+ * @author josel
+ */
 public class Mascotas {
-    private int idMascotas;
-    private String Nombre;
-    private LocalDate F_Nacimiento;
-    private String Nombres_Apellidos;
-    private String Raza;
-    private String Sexo;
-    private String tipo_Animal;
 
-    // Constructor, getters, and setters...
+    private int idMascotas;
+    private String NombreM;
+    private LocalDate F_Nacimiento;
+    private int Clientes_idClientes;
+    private String Nombres;
+    private int idRaza;
+    private String Raza;
+    private int idSexo;
+    private String Sexo;
+    private int idTipo_De_Animal;
+    private String Tipo;
+
+    public Mascotas() {
+    }
+
+    public Mascotas(int idMascotas, String NombreM, LocalDate F_Nacimiento, int Clientes_idClientes, String Nombres, int idRaza, String Raza, int idSexo, String Sexo, int idTipo_De_Animal, String Tipo) {
+        this.idMascotas = idMascotas;
+        this.NombreM = NombreM;
+        this.F_Nacimiento = F_Nacimiento;
+        this.Clientes_idClientes = Clientes_idClientes;
+        this.Nombres = Nombres;
+        this.idRaza = idRaza;
+        this.Raza = Raza;
+        this.idSexo = idSexo;
+        this.Sexo = Sexo;
+        this.idTipo_De_Animal = idTipo_De_Animal;
+        this.Tipo = Tipo;
+    }
+
+    public Mascotas(int idMascotas, String NombreM, LocalDate F_Nacimiento, int Clientes_idClientes, int idRaza, int idSexo, int idTipo_De_Animal) {
+        this.idMascotas = idMascotas;
+        this.NombreM = NombreM;
+        this.F_Nacimiento = F_Nacimiento;
+        this.Clientes_idClientes = Clientes_idClientes;
+        this.idRaza = idRaza;
+        this.idSexo = idSexo;
+        this.idTipo_De_Animal = idTipo_De_Animal;
+    }
+    
 
     public int getIdMascotas() {
         return idMascotas;
@@ -25,12 +56,12 @@ public class Mascotas {
         this.idMascotas = idMascotas;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public String getNombreM() {
+        return NombreM;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombreM(String NombreM) {
+        this.NombreM = NombreM;
     }
 
     public LocalDate getF_Nacimiento() {
@@ -41,12 +72,28 @@ public class Mascotas {
         this.F_Nacimiento = F_Nacimiento;
     }
 
-    public String getNombres_Apellidos() {
-        return Nombres_Apellidos;
+    public int getClientes_idClientes() {
+        return Clientes_idClientes;
     }
 
-    public void setNombres_Apellidos(String Nombres_Apellidos) {
-        this.Nombres_Apellidos = Nombres_Apellidos;
+    public void setClientes_idClientes(int Clientes_idClientes) {
+        this.Clientes_idClientes = Clientes_idClientes;
+    }
+
+    public String getNombres() {
+        return Nombres;
+    }
+
+    public void setNombres(String Nombres) {
+        this.Nombres = Nombres;
+    }
+
+    public int getIdRaza() {
+        return idRaza;
+    }
+
+    public void setIdRaza(int idRaza) {
+        this.idRaza = idRaza;
     }
 
     public String getRaza() {
@@ -57,6 +104,14 @@ public class Mascotas {
         this.Raza = Raza;
     }
 
+    public int getIdSexo() {
+        return idSexo;
+    }
+
+    public void setIdSexo(int idSexo) {
+        this.idSexo = idSexo;
+    }
+
     public String getSexo() {
         return Sexo;
     }
@@ -65,12 +120,20 @@ public class Mascotas {
         this.Sexo = Sexo;
     }
 
-    public String getTipo_Animal() {
-        return tipo_Animal;
+    public int getIdTipo_De_Animal() {
+        return idTipo_De_Animal;
     }
 
-    public void setTipo_Animal(String tipo_Animal) {
-        this.tipo_Animal = tipo_Animal;
+    public void setIdTipo_De_Animal(int idTipo_De_Animal) {
+        this.idTipo_De_Animal = idTipo_De_Animal;
     }
+
+    public String getTipo() {
+        return Tipo;
+    }
+
+    public void setTipo(String Tipo) {
+        this.Tipo = Tipo;
+    }
+    
 }
-

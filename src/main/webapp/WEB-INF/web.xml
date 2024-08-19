@@ -40,6 +40,30 @@
         <servlet-name>ListarMascota</servlet-name>
         <servlet-class>Controller.ListarMascota</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CerrarSesion</servlet-name>
+        <servlet-class>Controller.CerrarSesion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AuthFilter</servlet-name>
+        <servlet-class>Controller.AuthFilter</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EstadoCita</servlet-name>
+        <servlet-class>Controller.EstadoCita</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MascotaPorClienteController</servlet-name>
+        <servlet-class>Controller.MascotaPorClienteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AtencionController</servlet-name>
+        <servlet-class>Controller.AtencionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarMascota</servlet-name>
+        <servlet-class>Controller.EliminarMascota</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -79,6 +103,30 @@
     <servlet-mapping>
         <servlet-name>ListarMascota</servlet-name>
         <url-pattern>/ListarMascota</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthFilter</servlet-name>
+        <url-pattern>/AuthFilter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EstadoCita</servlet-name>
+        <url-pattern>/EstadoCita</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MascotaPorClienteController</servlet-name>
+        <url-pattern>/MascotaPorClienteController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AtencionController</servlet-name>
+        <url-pattern>/AtencionController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarMascota</servlet-name>
+        <url-pattern>/EliminarMascota</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

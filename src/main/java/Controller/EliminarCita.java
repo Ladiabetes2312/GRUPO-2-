@@ -1,22 +1,24 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
+* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+* Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+*/
 package Controller;
-
+ 
+import Dao.CitaDao;
+ 
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+ 
 /**
- *
- * @author josel
- */
+*
+* @author josel
+*/
 public class EliminarCita extends HttpServlet {
-
+ 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,19 +32,29 @@ public class EliminarCita extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EliminarCita</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EliminarCita at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            try {
+                int idCitas = Integer.parseInt(request.getParameter("id"));
+ 
+                CitaDao citaDao = new CitaDao();
+ 
+                int filasAfectadas = citaDao.eliminarCita(idCitas);
+ 
+                if (filasAfectadas > 0) {
+                    request.setAttribute("message", "Cita eliminado correctamente");
+                } else {
+                    request.setAttribute("message", "Error al eliminar Cita");
+                }
+ 
+                request.getRequestDispatcher("/ListarCitas.jsp").forward(request, response);
+ 
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+                e.printStackTrace();
+            }
+ 
         }
     }
-
+ 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -57,7 +69,7 @@ public class EliminarCita extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
+ 
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -71,7 +83,7 @@ public class EliminarCita extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
+ 
     /**
      * Returns a short description of the servlet.
      *
@@ -81,5 +93,5 @@ public class EliminarCita extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+ 
 }

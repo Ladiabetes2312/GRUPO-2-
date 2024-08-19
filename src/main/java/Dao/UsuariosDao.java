@@ -78,7 +78,6 @@ public class UsuariosDao extends Conexion {
             this.desconectar();
         }
         return res;
-
     }
 
     public int modificarUsuario(Login usu) {
@@ -147,4 +146,6 @@ public class UsuariosDao extends Conexion {
         }
         return lista;
     }
+    
+    
 }

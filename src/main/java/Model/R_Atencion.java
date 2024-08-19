@@ -13,24 +13,37 @@ import java.sql.Timestamp;
  */
 public class R_Atencion {
     private int idRegistro;
+    private String hora;
     private Date fechaVisita;
-    private Timestamp hora;
     private String motivoVisita;
     private String estadoMascota;
     private String diagnosticoGenerado;
     private String tratamiento;
     private String observaciones;
     private int citasIdCitas;
+    private String NombreM;
 
     // Constructor vacío
     public R_Atencion() {
     }
 
-    // Constructor con parámetros
-    public R_Atencion(int idRegistro, Date fechaVisita, Timestamp hora, String motivoVisita, String estadoMascota, String diagnosticoGenerado, String tratamiento, String observaciones, int citasIdCitas) {
+    public R_Atencion(int idRegistro, String hora, Date fechaVisita, String motivoVisita, String estadoMascota, String diagnosticoGenerado, String tratamiento, String observaciones, int citasIdCitas, String NombreM) {
         this.idRegistro = idRegistro;
-        this.fechaVisita = fechaVisita;
         this.hora = hora;
+        this.fechaVisita = fechaVisita;
+        this.motivoVisita = motivoVisita;
+        this.estadoMascota = estadoMascota;
+        this.diagnosticoGenerado = diagnosticoGenerado;
+        this.tratamiento = tratamiento;
+        this.observaciones = observaciones;
+        this.citasIdCitas = citasIdCitas;
+        this.NombreM = NombreM;
+    }
+
+    public R_Atencion(int idRegistro, String hora, Date fechaVisita, String motivoVisita, String estadoMascota, String diagnosticoGenerado, String tratamiento, String observaciones, int citasIdCitas) {
+        this.idRegistro = idRegistro;
+        this.hora = hora;
+        this.fechaVisita = fechaVisita;
         this.motivoVisita = motivoVisita;
         this.estadoMascota = estadoMascota;
         this.diagnosticoGenerado = diagnosticoGenerado;
@@ -39,7 +52,6 @@ public class R_Atencion {
         this.citasIdCitas = citasIdCitas;
     }
 
-    // Getters y Setters
     public int getIdRegistro() {
         return idRegistro;
     }
@@ -48,20 +60,20 @@ public class R_Atencion {
         this.idRegistro = idRegistro;
     }
 
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
     public Date getFechaVisita() {
         return fechaVisita;
     }
 
     public void setFechaVisita(Date fechaVisita) {
         this.fechaVisita = fechaVisita;
-    }
-
-    public Timestamp getHora() {
-        return hora;
-    }
-
-    public void setHora(Timestamp hora) {
-        this.hora = hora;
     }
 
     public String getMotivoVisita() {
@@ -111,4 +123,16 @@ public class R_Atencion {
     public void setCitasIdCitas(int citasIdCitas) {
         this.citasIdCitas = citasIdCitas;
     }
+
+    public String getNombreM() {
+        return NombreM;
+    }
+
+    public void setNombreM(String NombreM) {
+        this.NombreM = NombreM;
+    }
+
+
+
+
 }

@@ -91,11 +91,10 @@
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
-                                    <th>ID</th>
-                                    <th>Nombres y Apellidos</th>
+                                    <th>Nombres</th>
                                     <th>Correo Electronico</th>
                                     <th>Usuario</th>
-                                    <th>Contrasena</th>
+                                    <th>Contraseña</th>
                                     <th>Cargo</th>                     
                                     </thead>
                                     <tbody>
@@ -104,7 +103,7 @@
                                             for (Login elem : lista) {
                                         %>
                                         <tr>
-                                            <td class="id"><%=elem.getIdUsuario()%></td>
+                                            <td class="id" style="display: none;" ><%=elem.getIdUsuario()%></td>
                                             <td class="nombres"><%=elem.getNombres_Apellidos()%></td>
                                             <td class="correo"><%=elem.getCorreo_Electronico()%></td>
                                             <td class="usuario"><%=elem.getUsuario()%></td>
@@ -113,11 +112,11 @@
                                             <td>
                                                 <button type="button" class="btn btn-outline-warning btnEditar" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></button>                                        
                                             </td>
-                                            <td colspan="2">
+                                            <td colspan="">
                                                 <div class="d-flex gap-2">
                                                     <!-- Boton Eliminar -->
                                                     <form action="${pageContext.servletContext.contextPath}/EliminarUser" method="POST">
-                                                        <input type="hidden" name="id" value="">
+                                                        <input type="hidden" name="id" value="<%=elem.getIdUsuario()%>">
                                                         <button type="submit" class="btn btn-danger" onclick="return confirm('¿Seguro de eliminar a este Usuario?')"><i class="fa-solid fa-trash"></i></button>
                                                     </form>
                                                 </div>
@@ -139,10 +138,7 @@
                                         <form action="${pageContext.servletContext.contextPath}/UsuarioController" method="POST" id="form">
                                             <div class="modal-body">
                                                 <table class="table">
-                                                    <tr>
-                                                        <td>ID</td>
-                                                        <td><input type="text" id="txtID" name="txtID" class="form-control" value="0" readonly="true"></td> 
-                                                    </tr>
+                                                        <input type="hidden" id="txtID" name="txtID" class="form-control" value="0" readonly="true"></td> 
                                                     <tr>
                                                         <td>Nombres</td>
                                                         <td><input type="text" id="txtNombre" name="txtNombre" class="form-control"></td>

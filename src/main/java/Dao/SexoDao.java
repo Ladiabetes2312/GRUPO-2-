@@ -32,7 +32,7 @@ public class SexoDao extends Conexion{
                 while (rs.next()){
                     Sexo sx = new Sexo();
                     sx.setIdSexo(rs.getInt(1));
-                    sx.setDescripcion(rs.getString(2));
+                    sx.setSexo(rs.getString(2));
                     lista.add(sx);
                 }
             }

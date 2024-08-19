@@ -3,14 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
- 
+
 /**
-*
-* @author JOSUEDAVID
-*/
+ *
+ * @author JOSUEDAVID
+ */
 public class Clientes {
+
     private int idClientes;
-    private String Nombres_Apellidos;
+    private String Nombres;
     private String Telefono;
     private String Correo_Electronico;
     private String Direccion;
@@ -19,9 +20,9 @@ public class Clientes {
     public Clientes() {
     }
 
-    public Clientes(int idClientes, String Nombres_Apellidos, String Telefono, String Correo_Electronico, String Direccion, String DNI) {
+    public Clientes(int idClientes, String Nombres, String Telefono, String Correo_Electronico, String Direccion, String DNI) {
         this.idClientes = idClientes;
-        this.Nombres_Apellidos = Nombres_Apellidos;
+        this.Nombres = Nombres;
         this.Telefono = Telefono;
         this.Correo_Electronico = Correo_Electronico;
         this.Direccion = Direccion;
@@ -36,12 +37,12 @@ public class Clientes {
         this.idClientes = idClientes;
     }
 
-    public String getNombres_Apellidos() {
-        return Nombres_Apellidos;
+    public String getNombres() {
+        return Nombres;
     }
 
-    public void setNombres_Apellidos(String Nombres_Apellidos) {
-        this.Nombres_Apellidos = Nombres_Apellidos;
+    public void setNombres(String Nombres) {
+        this.Nombres = Nombres;
     }
 
     public String getTelefono() {
@@ -75,5 +76,5 @@ public class Clientes {
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }
- 
+
 }
